@@ -1,18 +1,35 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
-#include <vector>
 #include <iostream>
+#include <vector>
 using namespace std;
+
+// Add health statuses enumeration
+enum HealthStatus {
+    Health,
+    Immune,
+    Infected
+};
 
 class Board {
 public:
     Board(unsigned int size);
-
     void draw(sf::RenderWindow& window);
     void handleClick(sf::RenderWindow& window);
-    void highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& window);
+    void highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus);
+    void update(float deltaTime, sf::RenderWindow& window);
 
 private:
     unsigned int size;
-    std::vector<std::vector<sf::Color>> colors; // Dodaj to pole do klasy
+    std::vector<std::vector<HealthStatus>> healthStatuses;
+    std::vector<std::vector<sf::Color>> colors;
+
+    // Add a timer for tracking time-based events
+    float timer;
+    const float infectionInterval = 1.0f; // Adjust this value as needed
+    const float immuneDuration = 3.0f;     // Adjust this value as needed
+
+    // Function to handle infection spread
+    void spreadInfection(unsigned int row, unsigned int col);
 };
