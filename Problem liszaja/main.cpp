@@ -9,7 +9,7 @@ int main()
     unsigned int boardSize;
 
     do {
-        cout << "Wpisz liczbe pol x na x: ";
+        cout << "Wpisz liczbe pol x: ";
         cin >> boardSize;
 
         if (boardSize > 11) {

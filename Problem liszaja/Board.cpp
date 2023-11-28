@@ -2,7 +2,7 @@
 
 Board::Board(unsigned int size) : size(size) {
     // Inicjalizacja wektora kolorów dla ka¿dego pola
-    colors.resize(size, std::vector<sf::Color>(size, sf::Color::White));
+    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }
 
 void Board::draw(sf::RenderWindow& window) {
@@ -18,8 +18,8 @@ void Board::draw(sf::RenderWindow& window) {
             cell.setPosition(offsetX + j * cellSize, offsetY + i * cellSize);
 
             // Zmiana koloru pola na czarny, jeœli jest bia³e
-            if (colors[i][j] == sf::Color::White) {
-                cell.setFillColor(sf::Color::Black);
+            if (colors[i][j] == sf::Color::Green) {
+                cell.setFillColor(sf::Color::Green);
             }
             else {
                 cell.setFillColor(colors[i][j]);
@@ -52,11 +52,17 @@ void Board::draw(sf::RenderWindow& window) {
         return;
     }
 
-    sf::Text text("Problem liszaja", font, 30);
+    sf::Text Title("Problem liszaja", font, 30);
+    sf::FloatRect TitleRect = Title.getLocalBounds();
+    Title.setOrigin(TitleRect.left + TitleRect.width / 2.0f, TitleRect.top + TitleRect.height / 2.0f);
+    Title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
+    window.draw(Title);
+
+    float textOffsetX = offsetX + boardSize + 20.0f;
+    sf::Text text("Chuj", font, 20);
     sf::FloatRect textRect = text.getLocalBounds();
     text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    text.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
-
+    text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 30.0f));
     window.draw(text);
 }
 
