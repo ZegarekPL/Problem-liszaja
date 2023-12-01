@@ -9,11 +9,9 @@ Board::Board(unsigned int size) : size(size), timer(0.0f) {
 }
 
 void Board::draw(sf::RenderWindow& window) {
-    float cellSize = 50.0f;
-    float boardSize = size * cellSize;
-    float offsetX = (window.getSize().x - boardSize) / 2.0f;
-    float offsetY = (window.getSize().y - boardSize) / 2.0f;
-
+    offsetX = (window.getSize().x - boardSize) / 2.0f;
+    offsetY = (window.getSize().y - boardSize) / 2.0f;
+    boardSize = size * cellSize;
     // Rysowanie siatki i kolorowanie pó
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
@@ -53,7 +51,7 @@ void Board::draw(sf::RenderWindow& window) {
     }
 
     // Dodanie napisu
-    sf::Font font;
+
     if (!font.loadFromFile("Inter-Medium.ttf")) {
         cout << "Error: Blad ladowania czcionki" << endl;
         return;
@@ -64,13 +62,6 @@ void Board::draw(sf::RenderWindow& window) {
     Title.setOrigin(TitleRect.left + TitleRect.width / 2.0f, TitleRect.top + TitleRect.height / 2.0f);
     Title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
     window.draw(Title);
-
-    float textOffsetX = offsetX + boardSize + 20.0f;
-    sf::Text text("Chuj", font, 20);
-    sf::FloatRect textRect = text.getLocalBounds();
-    text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 30.0f));
-    window.draw(text);
 }
 
 void Board::handleClick(sf::RenderWindow& window) {
@@ -102,29 +93,30 @@ void Board::handleClick(sf::RenderWindow& window) {
 // Zaktualizowana funkcja highlightCell
 void Board::highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus) {
     healthStatuses[row][col] = newStatus;
-    colors[row][col] = sf::Color::Red;  // Zaznaczanie wybranego pola na czerwono (zmiana koloru)
+    colors[row][col] = sf::Color::Red;
 
     // Odœwie¿ widok
     window.display();
 }
 
 void Board::update(float deltaTime, sf::RenderWindow& window) {
-    // Update the timer
+
+    // Update the timer;
     timer += deltaTime;
-    
+
     // Check for infection spread every infectionInterval seconds
     if (timer >= infectionInterval) {
         // Iterate through the cells and spread infection
         for (unsigned int i = 0; i < size; ++i) {
             for (unsigned int j = 0; j < size; ++j) {
                 if (healthStatuses[i][j] == Infected) {
-                    spreadInfection(i, j);
+                    //spreadInfection(i, j);
                 }
             }
         }
+        cout << "deltaTime " << deltaTime << endl;
         cout << "timer " << timer << endl;
         // Reset the timer
-        timer = 0.0f;
     }
 
     // Check for transitioning Infected cells to Immune
@@ -135,6 +127,20 @@ void Board::update(float deltaTime, sf::RenderWindow& window) {
             }
         }
     }
+
+    float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
+    sf::Text DeltaTime("Delta Czasu: " + to_string(deltaTime), font, 20);
+    sf::FloatRect DeltaTimeRect = DeltaTime.getLocalBounds();
+    DeltaTime.setOrigin(DeltaTimeRect.left + DeltaTimeRect.width / 2.0f, DeltaTimeRect.top + DeltaTimeRect.height / 2.0f);
+    DeltaTime.setPosition(sf::Vector2f(deltaTimeOffsetX + DeltaTimeRect.width, offsetY + 30.0f));
+    window.draw(DeltaTime);
+
+    float textOffsetX = offsetX + boardSize + 20.0f;
+    sf::Text text("Delta Czasu: " + to_string(deltaTime), font, 20);
+    sf::FloatRect textRect = text.getLocalBounds();
+    text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+    text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 50.0f));
+    window.draw(text);
 
     draw(window);
 }
