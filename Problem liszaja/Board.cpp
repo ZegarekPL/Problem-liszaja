@@ -1,24 +1,21 @@
 #include "Board.h"
 
 Board::Board(unsigned int size) : size(size), timer(0.0f) {
-    // Initialize the vector of health statuses for each cell
-    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
-
-    // Inicjalizacja wektora kolorów dla ka¿dego pola
-    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
+    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));   // Initialize the vector of health statuses for each cell
+    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));    // Initialize the vector of colors for each cell
 }
 
 void Board::draw(sf::RenderWindow& window) {
+    boardSize = size * cellSize;
     offsetX = (window.getSize().x - boardSize) / 2.0f;
     offsetY = (window.getSize().y - boardSize) / 2.0f;
-    boardSize = size * cellSize;
-    // Rysowanie siatki i kolorowanie pó
+
+    // Rysowanie siatki i kolorowanie komórek
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
             sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
             cell.setPosition(offsetX + j * cellSize, offsetY + i * cellSize);
 
-            // Zmiana koloru pola na czarny, jeœli jest bia³e
             switch (healthStatuses[i][j]) {
             case Health:
                 cell.setFillColor(sf::Color::Green);
@@ -34,6 +31,7 @@ void Board::draw(sf::RenderWindow& window) {
         }
     }
 
+    // Rysowanie siatki
     for (unsigned int i = 0; i < size + 1; ++i) {
         for (unsigned int j = 0; j < size + 1; ++j) {
             // Rysowanie poprzerywanych bia³ych linii poziomych
@@ -50,48 +48,41 @@ void Board::draw(sf::RenderWindow& window) {
         }
     }
 
-    // Dodanie napisu
-
+    // Dodawanie czcionki
     if (!font.loadFromFile("Inter-Medium.ttf")) {
-        cout << "Error: Blad ladowania czcionki" << endl;
+        std::cout << "Error: B³¹d ³adowania czcionki" << std::endl;
         return;
     }
 
-    sf::Text Title("Problem liszaja", font, 30);
-    sf::FloatRect TitleRect = Title.getLocalBounds();
-    Title.setOrigin(TitleRect.left + TitleRect.width / 2.0f, TitleRect.top + TitleRect.height / 2.0f);
-    Title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
-    window.draw(Title);
+    // Dodanie napisu
+    sf::Text title("Problem liszaja", font, 30);
+    sf::FloatRect titleRect = title.getLocalBounds();
+    title.setOrigin(titleRect.left + titleRect.width / 2.0f, titleRect.top + titleRect.height / 2.0f);
+    title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
+    window.draw(title);
 }
 
 void Board::handleClick(sf::RenderWindow& window) {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    float cellSize = 50.0f;
-    float offsetX = (window.getSize().x - size * cellSize) / 2.0f;
-    float offsetY = (window.getSize().y - size * cellSize) / 2.0f;
 
     // Sprawdzanie, czy mysz znajduje siê nad plansz¹
-    if (mousePosition.x >= offsetX && mousePosition.x <= offsetX + size * cellSize &&
-        mousePosition.y >= offsetY && mousePosition.y <= offsetY + size * cellSize) {
+    if (mousePosition.x >= offsetX && mousePosition.x <= offsetX + boardSize &&
+        mousePosition.y >= offsetY && mousePosition.y <= offsetY + boardSize) {
 
         // Znajdowanie indeksu kolumny i wiersza, na który klikniêto
         unsigned int col = static_cast<unsigned int>((mousePosition.x - offsetX) / cellSize);
         unsigned int row = static_cast<unsigned int>((mousePosition.y - offsetY) / cellSize);
 
         // Wypisanie indeksów klikniêtego pola
-        cout << "Status" << healthStatuses[row][col] << "   ";
-        cout << "Clicked on cell: (" << row << ", " << col << ")" << endl;
+        std::cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
 
         // Zaznaczanie wybranego pola na czerwono
-        highlightCell(row, col, window, Infected);
-
-        // Spread infection for the initially infected cell
-        spreadInfection(row, col);
+        redCell(row, col, window, Infected);
     }
 }
 
-// Zaktualizowana funkcja highlightCell
-void Board::highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus) {
+// Zaktualizowana funkcja redCell
+void Board::redCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus) {
     healthStatuses[row][col] = newStatus;
     colors[row][col] = sf::Color::Red;
 
@@ -99,44 +90,40 @@ void Board::highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& 
     window.display();
 }
 
-void Board::update(float deltaTime, sf::RenderWindow& window) {
-
-    // Update the timer;
-    timer += deltaTime;
-
-    // Check for infection spread every infectionInterval seconds
-    if (timer >= infectionInterval) {
-        // Iterate through the cells and spread infection
-        for (unsigned int i = 0; i < size; ++i) {
-            for (unsigned int j = 0; j < size; ++j) {
-                if (healthStatuses[i][j] == Infected) {
-                    //spreadInfection(i, j);
-                }
+void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) {
+    // Iterate through the cells and spread infection
+    for (unsigned int i = 0; i < size; ++i) {
+        for (unsigned int j = 0; j < size; ++j) {
+            if (healthStatuses[i][j] == Infected) {
+                spreadInfection(i, j);
             }
         }
-        cout << "deltaTime " << deltaTime << endl;
-        cout << "timer " << timer << endl;
-        // Reset the timer
     }
+
+    std::cout << "currentround " << currentround << std::endl;
+    std::cout << "deltaTime " << deltaTime << std::endl;
+    std::cout << "timer " << timer << std::endl;
+
+    // Reset the timer
 
     // Check for transitioning Infected cells to Immune
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected && timer >= immuneDuration) {
-                highlightCell(i, j, window, Immune);
+                redCell(i, j, window, Immune);
             }
         }
     }
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
-    sf::Text DeltaTime("Delta Czasu: " + to_string(deltaTime), font, 20);
-    sf::FloatRect DeltaTimeRect = DeltaTime.getLocalBounds();
-    DeltaTime.setOrigin(DeltaTimeRect.left + DeltaTimeRect.width / 2.0f, DeltaTimeRect.top + DeltaTimeRect.height / 2.0f);
-    DeltaTime.setPosition(sf::Vector2f(deltaTimeOffsetX + DeltaTimeRect.width, offsetY + 30.0f));
-    window.draw(DeltaTime);
+    sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
+    sf::FloatRect deltaTextRect = deltaText.getLocalBounds();
+    deltaText.setOrigin(deltaTextRect.left + deltaTextRect.width / 2.0f, deltaTextRect.top + deltaTextRect.height / 2.0f);
+    deltaText.setPosition(sf::Vector2f(deltaTimeOffsetX + deltaTextRect.width, offsetY + 30.0f));
+    window.draw(deltaText);
 
     float textOffsetX = offsetX + boardSize + 20.0f;
-    sf::Text text("Delta Czasu: " + to_string(deltaTime), font, 20);
+    sf::Text text("Delta Czasu: " + std::to_string(deltaTime), font, 20);
     sf::FloatRect textRect = text.getLocalBounds();
     text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 50.0f));
@@ -153,31 +140,40 @@ void Board::spreadInfection(unsigned int row, unsigned int col) {
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(0.0, 1.0);
 
-    // Check adjacent cells and infect them with a 50% chance
-    for (int i = -1; i <= 1; ++i) {
-        for (int j = -1; j <= 1; ++j) {
-            // Skip the current cell
-            if (i == 0 && j == 0) {
-                continue;
-            }
+    // Check if the current cell is infected
+    if (healthStatuses[row][col] == Infected) {
+        // Iterate over adjacent cells and infect healthy ones with a 50% chance
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
+                // Skip the current cell
+                if (i == 0 && j == 0) {
+                    continue;
+                }
 
-            // Calculate the adjacent cell indices
-            int newRow = static_cast<int>(row) + i;
-            int newCol = static_cast<int>(col) + j;
+                // Calculate the adjacent cell indices
+                int newRow = static_cast<int>(row) + i;
+                int newCol = static_cast<int>(col) + j;
 
-            // Check if the adjacent cell is within the board boundaries
-            if (newRow >= 0 && newRow < static_cast<int>(size) &&
-                newCol >= 0 && newCol < static_cast<int>(size)) {
+                // Check if the adjacent cell is within the board boundaries
+                if (newRow >= 0 && newRow < static_cast<int>(size) &&
+                    newCol >= 0 && newCol < static_cast<int>(size)) {
 
-                // Check if the adjacent cell is healthy and infect it with a 50% chance
-                if (healthStatuses[newRow][newCol] == Health && dis(gen) < 0.5) {
-                    // Change status to Infected
-                    healthStatuses[newRow][newCol] = Infected;
+                    // Check if the adjacent cell is healthy and infect it with a 50% chance only if it's not already infected
+                    //if (healthStatuses[newRow][newCol] == Health && dis(gen) < 0.5) {
 
-                    // Change color to indicate infection
-                    colors[newRow][newCol] = sf::Color::Red;
+                    cout << "dostepne pole: (" << newRow << ", " << newCol << ")" << endl;
+
+                    if (healthStatuses[newRow][newCol] == Health) {
+                        // Change status to Infected
+                        healthStatuses[newRow][newCol] = Infected;
+
+                        // Change color to indicate infection
+                        colors[newRow][newCol] = sf::Color::Red;
+                    }
                 }
             }
         }
     }
 }
+
+
