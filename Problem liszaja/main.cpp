@@ -3,6 +3,18 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <SFML/Window.hpp>
+using namespace std;
+using namespace sf;
+
+void delay(int time, Board* board, RenderWindow& window) {
+    Clock delayClock;
+    delayClock.restart();
+    time *= 1000;
+    while (delayClock.getElapsedTime().asMilliseconds() < time) {
+        board->draw(window);
+    }
+}
 
 int main()
 {
@@ -57,7 +69,10 @@ int main()
 
                 // Zalicz klikniêcie tylko w pierwszej rundzie
                 if (currentround == 1) {
+                    window.clear();
                     board.handleClick(currentround, window);
+                    board.draw(window);
+                    window.display();
                     currentround = 2;
                 }
             }
@@ -67,17 +82,14 @@ int main()
             if (currentround != 1 && currentround <= maxround) {
                 for (currentround = 2; currentround <= maxround; currentround++) {
                     float deltaTime = clock.restart().asSeconds();
+                    delay(holdprocess, &board, window);
                     board.update(currentround, deltaTime, window);
                     window.clear();
                     board.draw(window);
                     window.display();
-                    std::this_thread::sleep_for(std::chrono::seconds(holdprocess));
                 }
             }
         }
-
-        
-        
         window.clear();
         board.draw(window);
         window.display();

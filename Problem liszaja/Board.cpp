@@ -79,7 +79,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
         // Zaznaczanie wybranego pola na czerwono
         healthStatuses[row][col] = Infected;
         addToData(currentround, row, col);
-        drawData(data);
+        //drawData(data);
     }
 }
 
@@ -89,10 +89,11 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
                 findRowAndCol(i, j, currentround);
-                drawData(data);
+                //drawData(data);
             }
         }
     }
+    spreadInfection(data);
 
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
@@ -137,6 +138,7 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) 
                     newCol >= 0 && newCol < static_cast<int>(size)) {
 
                     addToData(currentround, newRow, newCol);
+                    cout << "( " << currentround << ", " << newRow << ", " << newCol << ") " << endl;
                 }
             }
         }
@@ -144,28 +146,42 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) 
 }
 
 void Board::addToData(int currentroun, int newRow, int newCol) {
-    data.push_back({ make_tuple( newRow, newCol) });
+    data.push_back({ make_tuple(currentroun, newRow, newCol) });
 }
 
-void Board::drawData(const vector<vector<tuple<int, int>>>& data) {
+void Board::drawData(const vector<vector<tuple<int, int, int>>>& data) {
     cout << "Contents of the 2D vector:" << endl;
     for (const auto& roundData : data) {
         for (const auto& cell : roundData) {
-            int row = get<0>(cell);
-            int col = get<1>(cell);
+            int round = get<0>(cell);
+            int row = get<1>(cell);
+            int col = get<2>(cell);
 
-            cout << "( " << row << ", " << col << ") ";
+            cout << "( " << round << ", " << row << ", " << col << ") ";
         }
         cout << endl;
     }
 }
 
-/*
-            // SprawdŸ, czy komórka ma status "Health"
-            if (healthStatuses[row][col] == Health && healthStatuses[row][col]) {
+void Board::spreadInfection(const vector<vector<tuple<int, int, int>>>& data) {
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> dis(0.0, 1.0);
+
+    for (const auto& roundData : data) {
+        for (const auto& cell : roundData) {
+            int round = get<0>(cell);
+            int row = get<1>(cell);
+            int col = get<2>(cell);
+
+            //cout << "( " << round << ", " << row << ", " << col << ") ";
+
+            if (healthStatuses[row][col] == Health && dis(gen) < 0.5) {
                 // Je¿eli tak, to zmieñ status na "Infected"
                 healthStatuses[row][col] = Infected;
-                cout << "chuj ";
             }
             else continue;
-            */
+        }
+    }
+}

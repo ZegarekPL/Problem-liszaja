@@ -32,8 +32,9 @@ private:
     const float immuneDuration = 3.0f;
     float timer = 0.0f;
 
-    vector<vector<tuple<int, int>>> data;
+    vector<vector<tuple<int, int, int>>> data;
     void findRowAndCol(unsigned int row, unsigned int col, int currentround);
     void addToData(int newRow, int newCol, int currentround);
-    void drawData(const vector<vector<tuple<int, int>>>& data);
+    void drawData(const vector<vector<tuple<int, int, int>>>& data);
+    void spreadInfection(const vector<vector<tuple<int, int, int>>>& data);
 };
