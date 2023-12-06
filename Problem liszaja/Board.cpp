@@ -88,7 +88,7 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
                 findRowAndCol(i, j, currentround, infectionPercent);
-                //drawData(data);
+                drawData(data);
             }
         }
     }
@@ -167,8 +167,7 @@ void Board::drawData(vector<vector<tuple<int, int, int>>>& data) {
             int row = get<1>(cell);
             int col = get<2>(cell);
 
-            
-            //cout << "( " << round << " " << row << " " << col << ")" << endl;
+            cout << "( " << round << " " << row << " " << col << ")" << endl;
         }
     }
     cout << "Data: " << data.size() << endl;
