@@ -36,5 +36,5 @@ private:
     void findRowAndCol(unsigned int row, unsigned int col, int currentround);
     void addToData(int newRow, int newCol, int currentround);
     void drawData(const vector<vector<tuple<int, int, int>>>& data);
-    void spreadInfection(const vector<vector<tuple<int, int, int>>>& data);
+    void spreadInfection(const vector<vector<tuple<int, int, int>>>& data, int currentround);
 };

@@ -93,7 +93,7 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
             }
         }
     }
-    spreadInfection(data);
+    spreadInfection(data, currentround);
 
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
@@ -121,6 +121,10 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
 
 void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) {
 
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> dis(0.0, 1.0);
+
     if (healthStatuses[row][col] == Infected) {     // Check if the current cell is infected
         for (int i = -1; i <= 1; ++i) {
             for (int j = -1; j <= 1; ++j) {
@@ -135,10 +139,10 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) 
 
                 //Chech if cell is in board  
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
-                    newCol >= 0 && newCol < static_cast<int>(size)) {
+                    newCol >= 0 && newCol < static_cast<int>(size) &&
+                    dis(gen) < 0.5) {
 
                     addToData(currentround, newRow, newCol);
-                    cout << "( " << currentround << ", " << newRow << ", " << newCol << ") " << endl;
                 }
             }
         }
@@ -150,36 +154,33 @@ void Board::addToData(int currentroun, int newRow, int newCol) {
 }
 
 void Board::drawData(const vector<vector<tuple<int, int, int>>>& data) {
-    cout << "Contents of the 2D vector:" << endl;
     for (const auto& roundData : data) {
         for (const auto& cell : roundData) {
             int round = get<0>(cell);
             int row = get<1>(cell);
             int col = get<2>(cell);
-
-            cout << "( " << round << ", " << row << ", " << col << ") ";
         }
-        cout << endl;
     }
 }
 
-void Board::spreadInfection(const vector<vector<tuple<int, int, int>>>& data) {
-
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_real_distribution<> dis(0.0, 1.0);
-
+void Board::spreadInfection(const vector<vector<tuple<int, int, int>>>& data, int currentround) {
     for (const auto& roundData : data) {
         for (const auto& cell : roundData) {
             int round = get<0>(cell);
             int row = get<1>(cell);
             int col = get<2>(cell);
 
-            //cout << "( " << round << ", " << row << ", " << col << ") ";
-
-            if (healthStatuses[row][col] == Health && dis(gen) < 0.5) {
+            if (healthStatuses[row][col] == Health) {
                 // Je¿eli tak, to zmieñ status na "Infected"
                 healthStatuses[row][col] = Infected;
+            }
+            if (healthStatuses[row][col] == Infected && currentround - round > 3) {
+                // Je¿eli tak, to zmieñ status na "Immune"
+                healthStatuses[row][col] = Immune;
+            }
+            if (healthStatuses[row][col] == Immune && currentround - round > 3 + 2) {
+                // Je¿eli tak, to zmieñ status na "Immune"
+                healthStatuses[row][col] = Health;
             }
             else continue;
         }
