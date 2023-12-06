@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-// Avoid using "using namespace" in header files
+
 enum HealthStatus {
     Health,
     Immune,
@@ -17,7 +17,7 @@ public:
     Board(unsigned int size);
     void draw(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
-    void update(int currentRound, float deltaTime, sf::RenderWindow& window);
+    void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
 private:
     float cellSize = 50.0f;
     float boardSize;
@@ -33,8 +33,10 @@ private:
     float timer = 0.0f;
 
     vector<vector<tuple<int, int, int>>> data;
-    void findRowAndCol(unsigned int row, unsigned int col, int currentround);
+    void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);
     void addToData(int newRow, int newCol, int currentround);
-    void drawData(const vector<vector<tuple<int, int, int>>>& data);
-    void spreadInfection(const vector<vector<tuple<int, int, int>>>& data, int currentround);
+    void drawData(vector<vector<tuple<int, int, int>>>& data);
+    void spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
+    void removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
+    int countCells(HealthStatus status, int boardSize);
 };

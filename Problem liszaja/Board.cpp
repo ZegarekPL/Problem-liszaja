@@ -79,25 +79,31 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
         // Zaznaczanie wybranego pola na czerwono
         healthStatuses[row][col] = Infected;
         addToData(currentround, row, col);
-        //drawData(data);
     }
 }
 
-void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) {
+void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown) {
     // Iterate through the cells and spread infection
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
-                findRowAndCol(i, j, currentround);
+                findRowAndCol(i, j, currentround, infectionPercent);
                 //drawData(data);
             }
         }
     }
-    spreadInfection(data, currentround);
-
+    spreadInfection(data, currentround, infectedToImmune, immuneCooldown); 
+    
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
     std::cout << "timer " << timer << std::endl;
+
+    cout << "Health: " << countCells(Health, boardSize) << endl;
+    cout << "Infected: " << countCells(Infected, boardSize) << endl;
+    cout << "Immune: " << countCells(Immune, boardSize) << endl;
+    cout << "Infected+Immune: " << countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
+    cout << "Health+Infected+Immune: " << countCells(Health, boardSize) + countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
+    cout << "Data: " << data.size() << endl << endl << endl;
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
     sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
@@ -119,7 +125,7 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
 #include <random>
 #include <set>
 
-void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) {
+void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent) {
 
     random_device rd;
     mt19937 gen(rd());
@@ -140,7 +146,8 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) 
                 //Chech if cell is in board  
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
                     newCol >= 0 && newCol < static_cast<int>(size) &&
-                    dis(gen) < 0.5) {
+                    dis(gen) < infectionPercent &&
+                    healthStatuses[newRow][newCol] == Health) {
 
                     addToData(currentround, newRow, newCol);
                 }
@@ -153,17 +160,22 @@ void Board::addToData(int currentroun, int newRow, int newCol) {
     data.push_back({ make_tuple(currentroun, newRow, newCol) });
 }
 
-void Board::drawData(const vector<vector<tuple<int, int, int>>>& data) {
+void Board::drawData(vector<vector<tuple<int, int, int>>>& data) {
     for (const auto& roundData : data) {
         for (const auto& cell : roundData) {
             int round = get<0>(cell);
             int row = get<1>(cell);
             int col = get<2>(cell);
+
+            
+            //cout << "( " << round << " " << row << " " << col << ")" << endl;
         }
     }
+    cout << "Data: " << data.size() << endl;
 }
 
-void Board::spreadInfection(const vector<vector<tuple<int, int, int>>>& data, int currentround) {
+void Board::spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
+
     for (const auto& roundData : data) {
         for (const auto& cell : roundData) {
             int round = get<0>(cell);
@@ -174,15 +186,41 @@ void Board::spreadInfection(const vector<vector<tuple<int, int, int>>>& data, in
                 // Je¿eli tak, to zmieñ status na "Infected"
                 healthStatuses[row][col] = Infected;
             }
-            if (healthStatuses[row][col] == Infected && currentround - round > 3) {
+            if (healthStatuses[row][col] == Infected && currentround - round > infectedToImmune) {
                 // Je¿eli tak, to zmieñ status na "Immune"
                 healthStatuses[row][col] = Immune;
             }
-            if (healthStatuses[row][col] == Immune && currentround - round > 3 + 2) {
-                // Je¿eli tak, to zmieñ status na "Immune"
+            if (healthStatuses[row][col] == Immune && currentround - round > infectedToImmune + immuneCooldown) {
+                // Je¿eli tak, to zmieñ status na "Health"
                 healthStatuses[row][col] = Health;
+                removeHealthCells(data, currentround, infectedToImmune, immuneCooldown);
             }
             else continue;
         }
     }
+}
+
+void Board::removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
+    auto it = std::remove_if(data.begin(), data.end(), [&](const auto& roundData) {
+        return std::any_of(roundData.begin(), roundData.end(), [&](const auto& cell) {
+            int round = get<0>(cell);
+            int row = get<1>(cell);
+            int col = get<2>(cell);
+            return healthStatuses[row][col] == Health && currentround - round > infectedToImmune + immuneCooldown;
+            });
+        });
+    data.erase(it, data.end());
+}
+
+int Board::countCells(HealthStatus status, int boardSize) {
+    int count = 0;
+
+    for (unsigned int i = 0; i < boardSize; ++i) {
+        for (unsigned int j = 0; j < boardSize; ++j) {
+            if (healthStatuses[i][j] == status) {
+                count++;
+            }
+        }
+    }
+    return count;
 }
