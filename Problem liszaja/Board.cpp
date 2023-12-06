@@ -144,7 +144,7 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) 
 }
 
 void Board::addToData(int currentroun, int newRow, int newCol) {
-    data.push_back({ make_tuple(newRow, newCol) });
+    data.push_back({ make_tuple( newRow, newCol) });
 }
 
 void Board::drawData(const vector<vector<tuple<int, int>>>& data) {

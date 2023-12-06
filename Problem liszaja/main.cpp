@@ -40,10 +40,9 @@ int main()
 
     sf::Clock clock;
     bool gameStarted = false;  // Dodaj zmienn¹ kontroluj¹c¹, czy gra zosta³a rozpoczêta
-
+    int currentround = 1;
     while (window.isOpen())
     {
-        int currentround = 1;
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -62,19 +61,23 @@ int main()
                     currentround = 2;
                 }
             }
-        }
 
-        // Rozpocznij pêtlê tylko jeœli gra zosta³a ju¿ uruchomiona
-        if (currentround !=1 ) {
-            for (currentround = 2; currentround <= maxround; currentround++) {
-                float deltaTime = clock.restart().asSeconds();
-                board.update(currentround, deltaTime, window);
-                window.clear();
-                board.draw(window);
-                window.display();
-                std::this_thread::sleep_for(std::chrono::seconds(holdprocess));
+            // Rozpocznij pêtlê tylko jeœli gra zosta³a ju¿ uruchomiona
+
+            if (currentround != 1 && currentround <= maxround) {
+                for (currentround = 2; currentround <= maxround; currentround++) {
+                    float deltaTime = clock.restart().asSeconds();
+                    board.update(currentround, deltaTime, window);
+                    window.clear();
+                    board.draw(window);
+                    window.display();
+                    std::this_thread::sleep_for(std::chrono::seconds(holdprocess));
+                }
             }
         }
+
+        
+        
         window.clear();
         board.draw(window);
         window.display();
