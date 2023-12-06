@@ -62,7 +62,7 @@ void Board::draw(sf::RenderWindow& window) {
     window.draw(title);
 }
 
-void Board::handleClick(sf::RenderWindow& window) {
+void Board::handleClick(int currentround, sf::RenderWindow& window) {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
     // Sprawdzanie, czy mysz znajduje siê nad plansz¹
@@ -74,20 +74,13 @@ void Board::handleClick(sf::RenderWindow& window) {
         unsigned int row = static_cast<unsigned int>((mousePosition.y - offsetY) / cellSize);
 
         // Wypisanie indeksów klikniêtego pola
-        std::cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
+        cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
 
         // Zaznaczanie wybranego pola na czerwono
-        redCell(row, col, window, Infected);
+        healthStatuses[row][col] = Infected;
+        addToData(currentround, row, col);
+        drawData(data);
     }
-}
-
-// Zaktualizowana funkcja redCell
-void Board::redCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus) {
-    healthStatuses[row][col] = newStatus;
-    colors[row][col] = sf::Color::Red;
-
-    // Odœwie¿ widok
-    window.display();
 }
 
 void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) {
@@ -95,7 +88,8 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
-                spreadInfection(i, j);
+                findRowAndCol(i, j, currentround);
+                drawData(data);
             }
         }
     }
@@ -103,17 +97,6 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
     std::cout << "timer " << timer << std::endl;
-
-    // Reset the timer
-
-    // Check for transitioning Infected cells to Immune
-    for (unsigned int i = 0; i < size; ++i) {
-        for (unsigned int j = 0; j < size; ++j) {
-            if (healthStatuses[i][j] == Infected && timer >= immuneDuration) {
-                redCell(i, j, window, Immune);
-            }
-        }
-    }
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
     sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
@@ -133,16 +116,11 @@ void Board::update(int currentround, float deltaTime, sf::RenderWindow& window) 
 }
 
 #include <random>
+#include <set>
 
-void Board::spreadInfection(unsigned int row, unsigned int col) {
-    // Define a random number generator
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0.0, 1.0);
+void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround) {
 
-    // Check if the current cell is infected
-    if (healthStatuses[row][col] == Infected) {
-        // Iterate over adjacent cells and infect healthy ones with a 50% chance
+    if (healthStatuses[row][col] == Infected) {     // Check if the current cell is infected
         for (int i = -1; i <= 1; ++i) {
             for (int j = -1; j <= 1; ++j) {
                 // Skip the current cell
@@ -154,26 +132,40 @@ void Board::spreadInfection(unsigned int row, unsigned int col) {
                 int newRow = static_cast<int>(row) + i;
                 int newCol = static_cast<int>(col) + j;
 
-                // Check if the adjacent cell is within the board boundaries
+                //Chech if cell is in board  
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
                     newCol >= 0 && newCol < static_cast<int>(size)) {
 
-                    // Check if the adjacent cell is healthy and infect it with a 50% chance only if it's not already infected
-                    //if (healthStatuses[newRow][newCol] == Health && dis(gen) < 0.5) {
-
-                    cout << "dostepne pole: (" << newRow << ", " << newCol << ")" << endl;
-
-                    if (healthStatuses[newRow][newCol] == Health) {
-                        // Change status to Infected
-                        healthStatuses[newRow][newCol] = Infected;
-
-                        // Change color to indicate infection
-                        colors[newRow][newCol] = sf::Color::Red;
-                    }
+                    addToData(currentround, newRow, newCol);
                 }
             }
         }
     }
 }
 
+void Board::addToData(int currentroun, int newRow, int newCol) {
+    data.push_back({ make_tuple(newRow, newCol) });
+}
 
+void Board::drawData(const vector<vector<tuple<int, int>>>& data) {
+    cout << "Contents of the 2D vector:" << endl;
+    for (const auto& roundData : data) {
+        for (const auto& cell : roundData) {
+            int row = get<0>(cell);
+            int col = get<1>(cell);
+
+            cout << "( " << row << ", " << col << ") ";
+        }
+        cout << endl;
+    }
+}
+
+/*
+            // SprawdŸ, czy komórka ma status "Health"
+            if (healthStatuses[row][col] == Health && healthStatuses[row][col]) {
+                // Je¿eli tak, to zmieñ status na "Infected"
+                healthStatuses[row][col] = Infected;
+                cout << "chuj ";
+            }
+            else continue;
+            */

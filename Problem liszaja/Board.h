@@ -16,10 +16,8 @@ class Board {
 public:
     Board(unsigned int size);
     void draw(sf::RenderWindow& window);
-    void handleClick(sf::RenderWindow& window);
-    void redCell(unsigned int row, unsigned int col, sf::RenderWindow& window, HealthStatus newStatus);
+    void handleClick(int currentround, sf::RenderWindow& window);
     void update(int currentRound, float deltaTime, sf::RenderWindow& window);
-
 private:
     float cellSize = 50.0f;
     float boardSize;
@@ -27,12 +25,15 @@ private:
     float offsetY;
     sf::Font font;
     unsigned int size;
-    std::vector<std::vector<HealthStatus>> healthStatuses;
-    std::vector<std::vector<sf::Color>> colors;
+    vector<vector<HealthStatus>> healthStatuses;
+    vector<vector<sf::Color>> colors;
 
     const float infectionInterval = 1.0f;
     const float immuneDuration = 3.0f;
     float timer = 0.0f;
 
-    void spreadInfection(unsigned int row, unsigned int col);
+    vector<vector<tuple<int, int>>> data;
+    void findRowAndCol(unsigned int row, unsigned int col, int currentround);
+    void addToData(int newRow, int newCol, int currentround);
+    void drawData(const vector<vector<tuple<int, int>>>& data);
 };

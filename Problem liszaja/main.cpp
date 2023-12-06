@@ -58,7 +58,7 @@ int main()
 
                 // Zalicz klikniêcie tylko w pierwszej rundzie
                 if (currentround == 1) {
-                    board.handleClick(window);
+                    board.handleClick(currentround, window);
                     currentround = 2;
                 }
             }
