@@ -5,11 +5,12 @@
 #include <thread>
 #include <chrono>
 #include <SFML/Window.hpp>
+#include "Duration.h"
 
 class Game {
 public:
     int run();
-    void delay(int time, Board* board, sf::RenderWindow& window);
 private:
-
+    Duration duration;
+    sf::Clock clock;
 };

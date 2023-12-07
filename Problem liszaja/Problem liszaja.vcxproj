@@ -134,12 +134,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Duration.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Logic.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Duration.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Logic.h" />
   </ItemGroup>

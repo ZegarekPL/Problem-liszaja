@@ -2,15 +2,6 @@
 using namespace std;
 using namespace sf;
 
-void Game::delay(int time, Board* board, RenderWindow& window) {
-    Clock delayClock;
-    delayClock.restart();
-    time *= 1000;
-    while (delayClock.getElapsedTime().asMilliseconds() < time) {
-        board->draw(window);
-    }
-}
-
 int Game::run(){
 
     unsigned int boardSize;
@@ -74,9 +65,9 @@ int Game::run(){
 
     Board board(boardSize);
 
-    sf::Clock clock;
     bool gameStarted = false;  // Dodaj zmienn¹ kontroluj¹c¹, czy gra zosta³a rozpoczêta
     int currentround = 1;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -103,11 +94,12 @@ int Game::run(){
             }
 
             // Rozpocznij pêtlê tylko jeœli gra zosta³a ju¿ uruchomiona
-
+            
             if (currentround != 1 && currentround <= maxround) {
                 for (currentround = 2; currentround <= maxround; currentround++) {
                     float deltaTime = clock.restart().asSeconds();
-                    delay(holdprocess, &board, window);
+                    
+                    duration.delay(holdprocess, &board, window);
                     board.update(boardSize, currentround, deltaTime, window, infectionPercent, infectedToImmune, immuneCooldown);
                     window.clear();
                     board.draw(window);
