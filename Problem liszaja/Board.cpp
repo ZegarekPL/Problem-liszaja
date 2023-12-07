@@ -1,8 +1,8 @@
 #include "Board.h"
 
 Board::Board(unsigned int size) : size(size), timer(0.0f) {
-    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));   // Initialize the vector of health statuses for each cell
-    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));    // Initialize the vector of colors for each cell
+    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
+    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }
 
 void Board::draw(sf::RenderWindow& window) {

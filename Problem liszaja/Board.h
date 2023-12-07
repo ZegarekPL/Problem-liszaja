@@ -15,6 +15,7 @@ enum HealthStatus {
 class Board {
 public:
     Board(unsigned int size);
+    void consoleStart();
     void draw(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
     void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);

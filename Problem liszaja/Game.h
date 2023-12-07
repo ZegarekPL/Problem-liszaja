@@ -12,5 +12,6 @@ public:
     int run();
 private:
     Duration duration;
+
     sf::Clock clock;
 };
