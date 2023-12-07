@@ -1,6 +1,20 @@
 #include "Board.h"
 
-Board::Board(unsigned int size) : size(size), timer(0.0f) {
+Board::Board() {
+
+}
+
+void Board::consoleStart() {
+
+    do {
+        std::cout << "Wpisz liczbe pol x: ";
+        std::cin >> size;
+
+        if (size <= 0 || size > 11) {
+            std::cout << "Error: Too large area!!! Try again." << std::endl;
+        }
+    } while (size <= 0 || size > 11);
+
     healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
     colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }

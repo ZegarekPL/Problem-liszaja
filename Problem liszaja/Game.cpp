@@ -4,21 +4,12 @@ using namespace sf;
 
 int Game::run(){
 
-    unsigned int size;
-    
-    do {
-        std::cout << "Wpisz liczbe pol x: ";
-        std::cin >> size;
+    Board board;
 
-        if (size <= 0 || size > 11) {
-            std::cout << "Error: Too large area!!! Try again." << std::endl;
-        }
-    } while (size <= 0 || size > 11);
-
+    board.consoleStart();
     duration.consoleStart();
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Problem liszaja", sf::Style::Titlebar | sf::Style::Close);
-    Board board(size);
 
     bool gameStarted = false;
     int currentround = 1;
@@ -40,7 +31,7 @@ int Game::run(){
                     board.handleClick(currentround, window);
                     board.draw(window);
                     window.display();
-                    cout << "All: " << size * size << endl;
+                    cout << "All: " << board.size * board.size << endl;
                     currentround = 2;
                 }
             }
@@ -49,7 +40,7 @@ int Game::run(){
                     float deltaTime = clock.restart().asSeconds();
                     
                     duration.delay(duration.holdprocess, &board, window);
-                    board.update(size, currentround, deltaTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
+                    board.update(board.size, currentround, deltaTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
                     window.clear();
                     board.draw(window);
                     window.display();

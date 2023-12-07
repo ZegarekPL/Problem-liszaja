@@ -14,18 +14,20 @@ enum HealthStatus {
 
 class Board {
 public:
-    Board(unsigned int size);
+    Board();
     void consoleStart();
     void draw(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
     void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
+
+    unsigned int size;
 private:
     float cellSize = 50.0f;
     float boardSize;
     float offsetX;
     float offsetY;
     sf::Font font;
-    unsigned int size;
+    
     vector<vector<HealthStatus>> healthStatuses;
     vector<vector<sf::Color>> colors;
 
