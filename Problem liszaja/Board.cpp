@@ -102,12 +102,13 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
                 findRowAndCol(i, j, currentround, infectionPercent);
-                drawData(data);
             }
         }
     }
-    spreadInfection(data, currentround, infectedToImmune, immuneCooldown); 
     
+    spreadInfection(data, currentround, infectedToImmune, immuneCooldown); 
+    drawData(data);
+
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
     std::cout << "timer " << timer << std::endl;
@@ -181,7 +182,7 @@ void Board::drawData(vector<vector<tuple<int, int, int>>>& data) {
             int row = get<1>(cell);
             int col = get<2>(cell);
 
-            cout << "( " << round << " " << row << " " << col << ")" << endl;
+            cout << "( " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
         }
     }
     cout << "Data: " << data.size() << endl;
@@ -195,34 +196,56 @@ void Board::spreadInfection(vector<vector<tuple<int, int, int>>>& data, int curr
             int row = get<1>(cell);
             int col = get<2>(cell);
 
+            if (currentround == 5) {
+                cout << "DUPAspreadInfection " << endl;
+            }
+
             if (healthStatuses[row][col] == Health) {
                 // Je¿eli tak, to zmieñ status na "Infected"
                 healthStatuses[row][col] = Infected;
+                continue;
             }
-            if (healthStatuses[row][col] == Infected && currentround - round > infectedToImmune) {
+            if (healthStatuses[row][col] == Infected && currentround - round >= infectedToImmune) {
                 // Je¿eli tak, to zmieñ status na "Immune"
                 healthStatuses[row][col] = Immune;
+                continue;
             }
-            if (healthStatuses[row][col] == Immune && currentround - round > infectedToImmune + immuneCooldown) {
+            if (healthStatuses[row][col] == Immune && currentround - round >= infectedToImmune + immuneCooldown) {
                 // Je¿eli tak, to zmieñ status na "Health"
                 healthStatuses[row][col] = Health;
-                removeHealthCells(data, currentround, infectedToImmune, immuneCooldown);
+                continue;
             }
             else continue;
         }
     }
+    removeHealthCells(data, currentround, infectedToImmune, immuneCooldown);
 }
 
 void Board::removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
-    auto it = std::remove_if(data.begin(), data.end(), [&](const auto& roundData) {
-        return std::any_of(roundData.begin(), roundData.end(), [&](const auto& cell) {
+
+    if (currentround == 5) {
+        cout << "DUPA " << endl;
+    }
+    vector<int> toErase;
+    for (int i = 0; i < data.size(); i++) {
+        for (const auto& cell : data[i]) {
             int round = get<0>(cell);
             int row = get<1>(cell);
             int col = get<2>(cell);
-            return healthStatuses[row][col] == Health && currentround - round > infectedToImmune + immuneCooldown;
-            });
-        });
-    data.erase(it, data.end());
+
+            if (healthStatuses[row][col] == Health) {
+                toErase.push_back(i);
+                cout << "( TO ERASE " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
+            }
+
+        }
+    }
+    int licznik = 0;
+
+    for (auto index : toErase) {
+        data.erase(data.begin() + index-licznik);
+        licznik++;
+    }
 }
 
 int Board::countCells(HealthStatus status, int boardSize) {
