@@ -1,18 +1,42 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
-#include <vector>
 #include <iostream>
+#include <vector>
 using namespace std;
+
+
+enum HealthStatus {
+    Health,
+    Immune,
+    Infected
+};
 
 class Board {
 public:
     Board(unsigned int size);
-
     void draw(sf::RenderWindow& window);
-    void handleClick(sf::RenderWindow& window);
-    void highlightCell(unsigned int row, unsigned int col, sf::RenderWindow& window);
-
+    void handleClick(int currentround, sf::RenderWindow& window);
+    void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
 private:
+    float cellSize = 50.0f;
+    float boardSize;
+    float offsetX;
+    float offsetY;
+    sf::Font font;
     unsigned int size;
-    std::vector<std::vector<sf::Color>> colors; // Dodaj to pole do klasy
+    vector<vector<HealthStatus>> healthStatuses;
+    vector<vector<sf::Color>> colors;
+
+    const float infectionInterval = 1.0f;
+    const float immuneDuration = 3.0f;
+    float timer = 0.0f;
+
+    vector<vector<tuple<int, int, int>>> data;
+    void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);
+    void addToData(int newRow, int newCol, int currentround);
+    void drawData(vector<vector<tuple<int, int, int>>>& data);
+    void spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
+    void removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
+    int countCells(HealthStatus status, int boardSize);
 };
