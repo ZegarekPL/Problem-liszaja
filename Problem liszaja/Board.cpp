@@ -188,6 +188,8 @@ void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
 
 void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
+    quicksort(toStore, 0, toStore.size() - 1);
+
     for (int i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
         int row = get<1>(toStore[i]);
@@ -258,4 +260,39 @@ int Board::countCells(HealthStatus status, int boardSize) {
         }
     }
     return count;
+}
+
+void Board::swap(tuple<int, int, int>& a, tuple<int, int, int>& b) {
+    tuple<int, int, int> temp = a;
+    a = b;
+    b = temp;
+}
+
+// Funkcja pomocnicza do podzia³u tablicy dla quicksort
+int Board::partition(vector<tuple<int, int, int>>& toStore, int low, int high) {
+    int pivot = get<0>(toStore[high]); // Wybierz ostatni element jako pivot
+    int i = (low - 1); // Indeks elementu mniejszego ni¿ pivot
+
+    for (int j = low; j <= high - 1; j++) {
+        // Jeœli bie¿¹cy element jest mniejszy ni¿ pivot
+        if (get<0>(toStore[j]) < pivot) {
+            i++;
+            swap(toStore[i], toStore[j]);
+        }
+    }
+
+    swap(toStore[i + 1], toStore[high]);
+    return (i + 1);
+}
+
+// G³ówna funkcja sortuj¹ca quicksort
+void Board::quicksort(vector<tuple<int, int, int>>& toStore, int low, int high) {
+    if (low < high) {
+        // ZnajdŸ miejsce, w którym tablica jest podzielona
+        int pi = partition(toStore, low, high);
+
+        // Rekurencyjnie sortuj elementy przed i po podziale
+        quicksort(toStore, low, pi - 1);
+        quicksort(toStore, pi + 1, high);
+    }
 }

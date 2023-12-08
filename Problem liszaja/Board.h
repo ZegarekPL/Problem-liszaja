@@ -19,7 +19,9 @@ public:
     void draw(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
     void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
-
+    void swap(tuple<int, int, int>& a, tuple<int, int, int>& b);
+    int partition(vector<tuple<int, int, int>>& toStore, int low, int high);
+    void quicksort(vector<tuple<int, int, int>>& toStore, int low, int high);
     unsigned int size;
 private:
     float cellSize = 50.0f;
