@@ -1,9 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Board.h"
-#include <iostream>
-#include <thread>
-#include <chrono>
 #include <SFML/Window.hpp>
 #include "Duration.h"
 
