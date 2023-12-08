@@ -14,17 +14,19 @@ enum HealthStatus {
 
 class Board {
 public:
-    Board(unsigned int size);
+    Board();
+    void consoleStart();
     void draw(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
     void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
+    unsigned int size;
 private:
     float cellSize = 50.0f;
     float boardSize;
     float offsetX;
     float offsetY;
     sf::Font font;
-    unsigned int size;
+    
     vector<vector<HealthStatus>> healthStatuses;
     vector<vector<sf::Color>> colors;
 
@@ -32,11 +34,12 @@ private:
     const float immuneDuration = 3.0f;
     float timer = 0.0f;
 
-    vector<vector<tuple<int, int, int>>> data;
+    vector<tuple<int, int, int>> toStore;
     void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);
-    void addToData(int newRow, int newCol, int currentround);
-    void drawData(vector<vector<tuple<int, int, int>>>& data);
-    void spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
-    void removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown);
+    void addTotoStore(int newRow, int newCol, int currentround);
+    bool isInToStore(int currentround, int newRow, int newCol);
+    void drawtoStore(vector<tuple<int, int, int>>& toStore);
+    void spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown);
+    void removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown);
     int countCells(HealthStatus status, int boardSize);
 };

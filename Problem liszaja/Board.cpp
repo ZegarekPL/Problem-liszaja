@@ -1,8 +1,22 @@
 #include "Board.h"
 
-Board::Board(unsigned int size) : size(size), timer(0.0f) {
-    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));   // Initialize the vector of health statuses for each cell
-    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));    // Initialize the vector of colors for each cell
+Board::Board() {
+
+}
+
+void Board::consoleStart() {
+
+    do {
+        std::cout << "Wpisz liczbe pol x: ";
+        std::cin >> size;
+
+        if (size <= 0 || size > 11) {
+            std::cout << "Error: Too large area!!! Try again." << std::endl;
+        }
+    } while (size <= 0 || size > 11);
+
+    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
+    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }
 
 void Board::draw(sf::RenderWindow& window) {
@@ -78,7 +92,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
 
         // Zaznaczanie wybranego pola na czerwono
         healthStatuses[row][col] = Infected;
-        addToData(currentround, row, col);
+        addTotoStore(currentround, row, col);
     }
 }
 
@@ -88,12 +102,13 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
         for (unsigned int j = 0; j < size; ++j) {
             if (healthStatuses[i][j] == Infected) {
                 findRowAndCol(i, j, currentround, infectionPercent);
-                drawData(data);
             }
         }
     }
-    spreadInfection(data, currentround, infectedToImmune, immuneCooldown); 
     
+    spreadInfection(toStore, currentround, infectedToImmune, immuneCooldown); 
+    drawtoStore(toStore);
+
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
     std::cout << "timer " << timer << std::endl;
@@ -103,7 +118,7 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     cout << "Immune: " << countCells(Immune, boardSize) << endl;
     cout << "Infected+Immune: " << countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
     cout << "Health+Infected+Immune: " << countCells(Health, boardSize) + countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
-    cout << "Data: " << data.size() << endl << endl << endl;
+    cout << "toStore: " << toStore.size() << endl << endl << endl;
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
     sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
@@ -147,68 +162,93 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
                     newCol >= 0 && newCol < static_cast<int>(size) &&
                     dis(gen) < infectionPercent &&
-                    healthStatuses[newRow][newCol] == Health) {
+                    healthStatuses[newRow][newCol] == Health &&
+                    !isInToStore(currentround, newRow, newCol)) {
 
-                    addToData(currentround, newRow, newCol);
+                    addTotoStore(currentround, newRow, newCol);
                 }
             }
         }
     }
 }
 
-void Board::addToData(int currentroun, int newRow, int newCol) {
-    data.push_back({ make_tuple(currentroun, newRow, newCol) });
+void Board::addTotoStore(int currentroun, int newRow, int newCol) {
+    toStore.push_back({ make_tuple(currentroun, newRow, newCol) });
 }
 
-void Board::drawData(vector<vector<tuple<int, int, int>>>& data) {
-    for (const auto& roundData : data) {
-        for (const auto& cell : roundData) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
-
-            cout << "( " << round << " " << row << " " << col << ")" << endl;
-        }
-    }
-    cout << "Data: " << data.size() << endl;
-}
-
-void Board::spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
-
-    for (const auto& roundData : data) {
-        for (const auto& cell : roundData) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
-
-            if (healthStatuses[row][col] == Health) {
-                // Je¿eli tak, to zmieñ status na "Infected"
-                healthStatuses[row][col] = Infected;
-            }
-            if (healthStatuses[row][col] == Infected && currentround - round > infectedToImmune) {
-                // Je¿eli tak, to zmieñ status na "Immune"
-                healthStatuses[row][col] = Immune;
-            }
-            if (healthStatuses[row][col] == Immune && currentround - round > infectedToImmune + immuneCooldown) {
-                // Je¿eli tak, to zmieñ status na "Health"
-                healthStatuses[row][col] = Health;
-                removeHealthCells(data, currentround, infectedToImmune, immuneCooldown);
-            }
-            else continue;
-        }
-    }
-}
-
-void Board::removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
-    auto it = std::remove_if(data.begin(), data.end(), [&](const auto& roundData) {
-        return std::any_of(roundData.begin(), roundData.end(), [&](const auto& cell) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
-            return healthStatuses[row][col] == Health && currentround - round > infectedToImmune + immuneCooldown;
-            });
+bool Board::isInToStore(int currentround, int newRow, int newCol) {
+    // Przeszukaj wektor toStore w poszukiwaniu elementu
+    auto it = find_if(toStore.begin(), toStore.end(), [currentround, newRow, newCol](const tuple<int, int, int>& element) {
+        return get<0>(element) == currentround && get<1>(element) == newRow && get<2>(element) == newCol;
         });
-    data.erase(it, data.end());
+    return it != toStore.end();
+}
+
+void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
+    for (const auto& roundtoStore : toStore) {
+        int round = get<0>(roundtoStore);
+        int row = get<1>(roundtoStore);
+        int col = get<2>(roundtoStore);
+
+        cout << "( " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
+    }
+    cout << "toStore: " << toStore.size() << endl;
+}
+
+void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
+
+    
+
+    for (int i = 0; i < toStore.size(); i++) {
+        int round = get<0>(toStore[i]);
+        int row = get<1>(toStore[i]);
+        int col = get<2>(toStore[i]);
+
+        if (healthStatuses[row][col] == Health) {
+            // Je¿eli tak, to zmieñ status na "Infected"
+            cout << "Zmienieono z Health na ";
+            healthStatuses[row][col] = Infected;
+            cout << "Infected" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        if (healthStatuses[row][col] == Infected && currentround - round >= infectedToImmune) {
+            // Je¿eli tak, to zmieñ status na "Immune"
+            cout << "Zmienieono z Infected na ";
+            healthStatuses[row][col] = Immune;
+            cout << "Immune" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        if (healthStatuses[row][col] == Immune && currentround - round >= infectedToImmune + immuneCooldown) {
+            // Je¿eli tak, to zmieñ status na "Health"
+            cout << "Zmienieono z Immune na ";
+            healthStatuses[row][col] = Health;
+            cout << "Health" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        else continue;
+    }
+    removeHealthCells(toStore, currentround, infectedToImmune, immuneCooldown);
+}
+
+void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
+
+    vector<int> toErase;
+    for (int i = 0; i < toStore.size(); i++) {
+        int round = get<0>(toStore[i]);
+        int row = get<1>(toStore[i]);
+        int col = get<2>(toStore[i]);
+
+        if (healthStatuses[row][col] == Health) {
+            toErase.push_back(i);
+            cout << "( TO ERASE " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
+        }
+    }
+    int licznik = 0;
+
+    for (auto index : toErase) {
+        toStore.erase(toStore.begin() + index-licznik);
+        licznik++;
+    }
 }
 
 int Board::countCells(HealthStatus status, int boardSize) {
