@@ -16,11 +16,12 @@ class Board {
 public:
     Board();
     void consoleStart();
-    void draw(sf::RenderWindow& window);
+    void drawBoard(sf::RenderWindow& window);
     void calculateboardSize(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
     void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
     unsigned int size;
+    int countCells(HealthStatus status, int boardSize);
 private:
     float cellSize = 50.0f;
     float boardSize;
@@ -35,6 +36,10 @@ private:
     const float immuneDuration = 3.0f;
     float timer = 0.0f;
 
+    sf::Text title;
+    sf::Text deltaText;
+    sf::Text text;
+
     vector<tuple<int, int, int>> toStore;
     void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);
     void addTotoStore(int newRow, int newCol, int currentround);
@@ -42,5 +47,4 @@ private:
     void drawtoStore(vector<tuple<int, int, int>>& toStore);
     void spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown);
     void removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown);
-    int countCells(HealthStatus status, int boardSize);
 };
