@@ -162,7 +162,8 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
                     newCol >= 0 && newCol < static_cast<int>(size) &&
                     dis(gen) < infectionPercent &&
-                    healthStatuses[newRow][newCol] == Health) {
+                    healthStatuses[newRow][newCol] == Health &&
+                    !isInToStore(currentround, newRow, newCol)) {
 
                     addTotoStore(currentround, newRow, newCol);
                 }
@@ -173,6 +174,14 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
 
 void Board::addTotoStore(int currentroun, int newRow, int newCol) {
     toStore.push_back({ make_tuple(currentroun, newRow, newCol) });
+}
+
+bool Board::isInToStore(int currentround, int newRow, int newCol) {
+    // Przeszukaj wektor toStore w poszukiwaniu elementu
+    auto it = find_if(toStore.begin(), toStore.end(), [currentround, newRow, newCol](const tuple<int, int, int>& element) {
+        return get<0>(element) == currentround && get<1>(element) == newRow && get<2>(element) == newCol;
+        });
+    return it != toStore.end();
 }
 
 void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
@@ -188,16 +197,12 @@ void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
 
 void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
-    quicksort(toStore, 0, toStore.size() - 1);
+    
 
     for (int i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
         int row = get<1>(toStore[i]);
         int col = get<2>(toStore[i]);
-
-        if (currentround == 5) {
-            cout << "SpreadInfection " << endl;
-        }
 
         if (healthStatuses[row][col] == Health) {
             // Je¿eli tak, to zmieñ status na "Infected"
@@ -227,9 +232,6 @@ void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentro
 
 void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
-    if (currentround == 5) {
-        cout << "DUPA " << endl;
-    }
     vector<int> toErase;
     for (int i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
@@ -260,39 +262,4 @@ int Board::countCells(HealthStatus status, int boardSize) {
         }
     }
     return count;
-}
-
-void Board::swap(tuple<int, int, int>& a, tuple<int, int, int>& b) {
-    tuple<int, int, int> temp = a;
-    a = b;
-    b = temp;
-}
-
-// Funkcja pomocnicza do podzia³u tablicy dla quicksort
-int Board::partition(vector<tuple<int, int, int>>& toStore, int low, int high) {
-    int pivot = get<0>(toStore[high]); // Wybierz ostatni element jako pivot
-    int i = (low - 1); // Indeks elementu mniejszego ni¿ pivot
-
-    for (int j = low; j <= high - 1; j++) {
-        // Jeœli bie¿¹cy element jest mniejszy ni¿ pivot
-        if (get<0>(toStore[j]) < pivot) {
-            i++;
-            swap(toStore[i], toStore[j]);
-        }
-    }
-
-    swap(toStore[i + 1], toStore[high]);
-    return (i + 1);
-}
-
-// G³ówna funkcja sortuj¹ca quicksort
-void Board::quicksort(vector<tuple<int, int, int>>& toStore, int low, int high) {
-    if (low < high) {
-        // ZnajdŸ miejsce, w którym tablica jest podzielona
-        int pi = partition(toStore, low, high);
-
-        // Rekurencyjnie sortuj elementy przed i po podziale
-        quicksort(toStore, low, pi - 1);
-        quicksort(toStore, pi + 1, high);
-    }
 }
