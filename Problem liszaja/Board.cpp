@@ -112,7 +112,7 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     }
     
     spreadInfection(toStore, currentround, infectedToImmune, immuneCooldown); 
-    drawtoStore(toStore);
+    //drawtoStore(toStore);
 
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
@@ -211,23 +211,17 @@ void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentro
 
         if (healthStatuses[row][col] == Health) {
             // Je¿eli tak, to zmieñ status na "Infected"
-            cout << "Zmienieono z Health na ";
             healthStatuses[row][col] = Infected;
-            cout << "Infected" << "( " << row << ", " << col << ")" << endl;
             continue;
         }
         if (healthStatuses[row][col] == Infected && currentround - round >= infectedToImmune) {
             // Je¿eli tak, to zmieñ status na "Immune"
-            cout << "Zmienieono z Infected na ";
             healthStatuses[row][col] = Immune;
-            cout << "Immune" << "( " << row << ", " << col << ")" << endl;
             continue;
         }
         if (healthStatuses[row][col] == Immune && currentround - round >= infectedToImmune + immuneCooldown) {
             // Je¿eli tak, to zmieñ status na "Health"
-            cout << "Zmienieono z Immune na ";
             healthStatuses[row][col] = Health;
-            cout << "Health" << "( " << row << ", " << col << ")" << endl;
             continue;
         }
         else continue;
@@ -247,14 +241,18 @@ void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int current
 
         if (healthStatuses[row][col] == Health) {
             toErase.push_back(i);
-            cout << "( TO ERASE " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
         }
     }
+
     int licznik = 0;
 
-    for (auto index : toErase) {
-        toStore.erase(toStore.begin() + index-licznik);
-        licznik++;
+    int j;
+    for (int j = 0; j < toErase.size(); ++j) {
+        int index = toErase[j] - licznik;
+        if (index >= 0 && index < toStore.size()) {
+            toStore.erase(toStore.begin() + index);
+            licznik++;
+        }
     }
 }
 
