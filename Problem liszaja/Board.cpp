@@ -162,7 +162,8 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
                 if (newRow >= 0 && newRow < static_cast<int>(size) &&
                     newCol >= 0 && newCol < static_cast<int>(size) &&
                     dis(gen) < infectionPercent &&
-                    healthStatuses[newRow][newCol] == Health) {
+                    healthStatuses[newRow][newCol] == Health &&
+                    !isInToStore(currentround, newRow, newCol)) {
 
                     addTotoStore(currentround, newRow, newCol);
                 }
@@ -173,6 +174,14 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
 
 void Board::addTotoStore(int currentroun, int newRow, int newCol) {
     toStore.push_back({ make_tuple(currentroun, newRow, newCol) });
+}
+
+bool Board::isInToStore(int currentround, int newRow, int newCol) {
+    // Przeszukaj wektor toStore w poszukiwaniu elementu
+    auto it = find_if(toStore.begin(), toStore.end(), [currentround, newRow, newCol](const tuple<int, int, int>& element) {
+        return get<0>(element) == currentround && get<1>(element) == newRow && get<2>(element) == newCol;
+        });
+    return it != toStore.end();
 }
 
 void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
@@ -188,14 +197,12 @@ void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
 
 void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
+    
+
     for (int i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
         int row = get<1>(toStore[i]);
         int col = get<2>(toStore[i]);
-
-        if (currentround == 5) {
-            cout << "SpreadInfection " << endl;
-        }
 
         if (healthStatuses[row][col] == Health) {
             // Je¿eli tak, to zmieñ status na "Infected"
@@ -225,9 +232,6 @@ void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentro
 
 void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
-    if (currentround == 5) {
-        cout << "DUPA " << endl;
-    }
     vector<int> toErase;
     for (int i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
