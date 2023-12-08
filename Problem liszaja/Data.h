@@ -1,5 +1,6 @@
 #pragma once
-class Logic
-{
+class Data{
+
+
 };
 

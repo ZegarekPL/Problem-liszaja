@@ -92,7 +92,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
 
         // Zaznaczanie wybranego pola na czerwono
         healthStatuses[row][col] = Infected;
-        addToData(currentround, row, col);
+        addTotoStore(currentround, row, col);
     }
 }
 
@@ -106,8 +106,8 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
         }
     }
     
-    spreadInfection(data, currentround, infectedToImmune, immuneCooldown); 
-    drawData(data);
+    spreadInfection(toStore, currentround, infectedToImmune, immuneCooldown); 
+    drawtoStore(toStore);
 
     std::cout << "currentround " << currentround << std::endl;
     std::cout << "deltaTime " << deltaTime << std::endl;
@@ -118,7 +118,7 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     cout << "Immune: " << countCells(Immune, boardSize) << endl;
     cout << "Infected+Immune: " << countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
     cout << "Health+Infected+Immune: " << countCells(Health, boardSize) + countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
-    cout << "Data: " << data.size() << endl << endl << endl;
+    cout << "toStore: " << toStore.size() << endl << endl << endl;
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
     sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
@@ -164,86 +164,85 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
                     dis(gen) < infectionPercent &&
                     healthStatuses[newRow][newCol] == Health) {
 
-                    addToData(currentround, newRow, newCol);
+                    addTotoStore(currentround, newRow, newCol);
                 }
             }
         }
     }
 }
 
-void Board::addToData(int currentroun, int newRow, int newCol) {
-    data.push_back({ make_tuple(currentroun, newRow, newCol) });
+void Board::addTotoStore(int currentroun, int newRow, int newCol) {
+    toStore.push_back({ make_tuple(currentroun, newRow, newCol) });
 }
 
-void Board::drawData(vector<vector<tuple<int, int, int>>>& data) {
-    for (const auto& roundData : data) {
-        for (const auto& cell : roundData) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
+void Board::drawtoStore(vector<tuple<int, int, int>>& toStore) {
+    for (const auto& roundtoStore : toStore) {
+        int round = get<0>(roundtoStore);
+        int row = get<1>(roundtoStore);
+        int col = get<2>(roundtoStore);
 
-            cout << "( " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
-        }
+        cout << "( " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
     }
-    cout << "Data: " << data.size() << endl;
+    cout << "toStore: " << toStore.size() << endl;
 }
 
-void Board::spreadInfection(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
+void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
-    for (const auto& roundData : data) {
-        for (const auto& cell : roundData) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
+    for (int i = 0; i < toStore.size(); i++) {
+        int round = get<0>(toStore[i]);
+        int row = get<1>(toStore[i]);
+        int col = get<2>(toStore[i]);
 
-            if (currentround == 5) {
-                cout << "DUPAspreadInfection " << endl;
-            }
-
-            if (healthStatuses[row][col] == Health) {
-                // Je¿eli tak, to zmieñ status na "Infected"
-                healthStatuses[row][col] = Infected;
-                continue;
-            }
-            if (healthStatuses[row][col] == Infected && currentround - round >= infectedToImmune) {
-                // Je¿eli tak, to zmieñ status na "Immune"
-                healthStatuses[row][col] = Immune;
-                continue;
-            }
-            if (healthStatuses[row][col] == Immune && currentround - round >= infectedToImmune + immuneCooldown) {
-                // Je¿eli tak, to zmieñ status na "Health"
-                healthStatuses[row][col] = Health;
-                continue;
-            }
-            else continue;
+        if (currentround == 5) {
+            cout << "SpreadInfection " << endl;
         }
+
+        if (healthStatuses[row][col] == Health) {
+            // Je¿eli tak, to zmieñ status na "Infected"
+            cout << "Zmienieono z Health na ";
+            healthStatuses[row][col] = Infected;
+            cout << "Infected" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        if (healthStatuses[row][col] == Infected && currentround - round >= infectedToImmune) {
+            // Je¿eli tak, to zmieñ status na "Immune"
+            cout << "Zmienieono z Infected na ";
+            healthStatuses[row][col] = Immune;
+            cout << "Immune" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        if (healthStatuses[row][col] == Immune && currentround - round >= infectedToImmune + immuneCooldown) {
+            // Je¿eli tak, to zmieñ status na "Health"
+            cout << "Zmienieono z Immune na ";
+            healthStatuses[row][col] = Health;
+            cout << "Health" << "( " << row << ", " << col << ")" << endl;
+            continue;
+        }
+        else continue;
     }
-    removeHealthCells(data, currentround, infectedToImmune, immuneCooldown);
+    removeHealthCells(toStore, currentround, infectedToImmune, immuneCooldown);
 }
 
-void Board::removeHealthCells(vector<vector<tuple<int, int, int>>>& data, int currentround, int infectedToImmune, int immuneCooldown) {
+void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
     if (currentround == 5) {
         cout << "DUPA " << endl;
     }
     vector<int> toErase;
-    for (int i = 0; i < data.size(); i++) {
-        for (const auto& cell : data[i]) {
-            int round = get<0>(cell);
-            int row = get<1>(cell);
-            int col = get<2>(cell);
+    for (int i = 0; i < toStore.size(); i++) {
+        int round = get<0>(toStore[i]);
+        int row = get<1>(toStore[i]);
+        int col = get<2>(toStore[i]);
 
-            if (healthStatuses[row][col] == Health) {
-                toErase.push_back(i);
-                cout << "( TO ERASE " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
-            }
-
+        if (healthStatuses[row][col] == Health) {
+            toErase.push_back(i);
+            cout << "( TO ERASE " << round << " " << row << " " << col << " " << healthStatuses[row][col] << ")" << endl;
         }
     }
     int licznik = 0;
 
     for (auto index : toErase) {
-        data.erase(data.begin() + index-licznik);
+        toStore.erase(toStore.begin() + index-licznik);
         licznik++;
     }
 }
