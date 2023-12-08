@@ -19,12 +19,18 @@ void Board::consoleStart() {
     colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }
 
-void Board::draw(sf::RenderWindow& window) {
+
+void Board::calculateboardSize(sf::RenderWindow& window) {
     boardSize = size * cellSize;
     offsetX = (window.getSize().x - boardSize) / 2.0f;
     offsetY = (window.getSize().y - boardSize) / 2.0f;
+}
 
-    // Rysowanie siatki i kolorowanie komórek
+
+void Board::draw(sf::RenderWindow& window) {
+
+    calculateboardSize(window);
+
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
             sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
@@ -45,7 +51,6 @@ void Board::draw(sf::RenderWindow& window) {
         }
     }
 
-    // Rysowanie siatki
     for (unsigned int i = 0; i < size + 1; ++i) {
         for (unsigned int j = 0; j < size + 1; ++j) {
             // Rysowanie poprzerywanych bia³ych linii poziomych
@@ -118,7 +123,6 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     cout << "Immune: " << countCells(Immune, boardSize) << endl;
     cout << "Infected+Immune: " << countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
     cout << "Health+Infected+Immune: " << countCells(Health, boardSize) + countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
-    cout << "toStore: " << toStore.size() << endl << endl << endl;
 
     float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
     sf::Text deltaText("Delta Czasu: " + std::to_string(deltaTime), font, 20);
@@ -127,13 +131,14 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     deltaText.setPosition(sf::Vector2f(deltaTimeOffsetX + deltaTextRect.width, offsetY + 30.0f));
     window.draw(deltaText);
 
+    /*
     float textOffsetX = offsetX + boardSize + 20.0f;
     sf::Text text("Delta Czasu: " + std::to_string(deltaTime), font, 20);
     sf::FloatRect textRect = text.getLocalBounds();
     text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 50.0f));
     window.draw(text);
-
+    */
     draw(window);
 }
 
@@ -233,7 +238,9 @@ void Board::spreadInfection(vector<tuple<int, int, int>>& toStore, int currentro
 void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int currentround, int infectedToImmune, int immuneCooldown) {
 
     vector<int> toErase;
-    for (int i = 0; i < toStore.size(); i++) {
+
+    int i;
+    for (i = 0; i < toStore.size(); i++) {
         int round = get<0>(toStore[i]);
         int row = get<1>(toStore[i]);
         int col = get<2>(toStore[i]);
@@ -252,10 +259,13 @@ void Board::removeHealthCells(vector<tuple<int, int, int>>& toStore, int current
 }
 
 int Board::countCells(HealthStatus status, int boardSize) {
-    int count = 0;
 
-    for (unsigned int i = 0; i < boardSize; ++i) {
-        for (unsigned int j = 0; j < boardSize; ++j) {
+    int count = 0;
+    unsigned int i;
+    unsigned int j;
+
+    for (i = 0; i < boardSize; ++i) {
+        for (j = 0; j < boardSize; ++j) {
             if (healthStatuses[i][j] == status) {
                 count++;
             }

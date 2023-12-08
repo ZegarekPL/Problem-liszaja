@@ -4,8 +4,6 @@ using namespace sf;
 
 int Game::run(){
 
-    Board board;
-
     board.consoleStart();
     duration.consoleStart();
 
@@ -14,11 +12,9 @@ int Game::run(){
     bool gameStarted = false;
     int currentround = 1;
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
@@ -28,6 +24,7 @@ int Game::run(){
                 }
                 if (currentround == 1) {
                     window.clear();
+                    board.calculateboardSize(window);
                     board.handleClick(currentround, window);
                     board.draw(window);
                     window.display();

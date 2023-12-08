@@ -9,6 +9,7 @@ public:
     int run();
 private:
     Duration duration;
+    Board board;
     sf::Clock clock;
 
 };
