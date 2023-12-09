@@ -18,6 +18,11 @@ int Game::run(){
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
+            /*
+            if (!gameStarted) {
+
+            }
+            */
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 if (!gameStarted) {
                     gameStarted = true;
@@ -27,6 +32,7 @@ int Game::run(){
                     board.calculateboardSize(window);
                     board.handleClick(currentround, window);
                     board.drawBoard(window);
+                    menu.drawMenu(window);
                     window.display();
                     currentround = 2;
                 }
