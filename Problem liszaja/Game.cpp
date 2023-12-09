@@ -4,8 +4,8 @@ using namespace sf;
 
 int Game::run(){
 
-    board.consoleStart();
-    duration.consoleStart();
+    //board.consoleStart();
+    //duration.consoleStart();
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Problem liszaja", sf::Style::Titlebar | sf::Style::Close);
 

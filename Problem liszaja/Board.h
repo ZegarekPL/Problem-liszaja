@@ -20,7 +20,7 @@ public:
     void drawBoard(sf::RenderWindow& window);
     void calculateboardSize(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
-    void update(int boardSize, int currentRound, float deltaTime, float allTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
+    void update(int boardSize, int currentRound, float deltaTime, float allTime, sf::RenderWindow& window, int infectionPercent, int infectedToImmune, int immuneCooldown);
     unsigned int size;
     int countCells(HealthStatus status, int boardSize);
 private:

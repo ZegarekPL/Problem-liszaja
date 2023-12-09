@@ -107,7 +107,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
     }
 }
 
-void Board::update(int boardSize,int currentround, float deltaTime, float allTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown) {
+void Board::update(int boardSize,int currentround, float deltaTime, float allTime, sf::RenderWindow& window, int infectionPercent, int infectedToImmune, int immuneCooldown) {
     // Iterate through the cells and spread infection
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
@@ -171,7 +171,7 @@ void Board::findRowAndCol(unsigned int row, unsigned int col, int currentround, 
 
     random_device rd;
     mt19937 gen(rd());
-    uniform_real_distribution<> dis(0.0, 1.0);
+    uniform_real_distribution<> dis(1, 100);
 
     if (healthStatuses[row][col] == Infected) {     // Check if the current cell is infected
         for (int i = -1; i <= 1; ++i) {

@@ -8,7 +8,7 @@ public:
 	void consoleStart();
     int maxround;
     unsigned int holdprocess;
-    float infectionPercent;
+    int infectionPercent;
     unsigned int infectedToImmune;
     unsigned int immuneCooldown;
 };

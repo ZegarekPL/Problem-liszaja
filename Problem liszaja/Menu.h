@@ -8,12 +8,10 @@
 class Menu{
 public:
     Menu();
-    void delay(int time, sf::RenderWindow& window);
-    void consoleStart();
     void drawMenu(sf::RenderWindow& window);
-    void drawButton(sf::RenderWindow& window, const std::string& text, const sf::Vector2f& position, const std::function<void()>& onClick);
-    void increase(int howMuch);
-    void decrease(int howMuch);
+    void drawButton(sf::RenderWindow& window, const std::string& text, const sf::Vector2f& position, const std::function<void()>& onClick, const sf::Color& mainColor, const sf::Color& hoverColor);
+    void increase(int howMuch, const std::string& variable);
+    void decrease(int howMuch, const std::string& variable);
 private:
     sf::Font font;
     sf::Text title;
@@ -23,6 +21,7 @@ private:
     sf::Text infectionPercentText;
     sf::Text infectedToImmuneText;
     sf::Text immuneCooldownText;
+    sf::Text exit;
     Board board;
     Duration duration;
 };
