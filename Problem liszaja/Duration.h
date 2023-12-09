@@ -1,10 +1,10 @@
 #pragma once
-#include "Board.h"
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Duration {
 public:
-	void delay(int time, Board* board, sf::RenderWindow& window);
+	void delay(int time, sf::RenderWindow& window);
 	void consoleStart();
     float maxround;
     unsigned int holdprocess;

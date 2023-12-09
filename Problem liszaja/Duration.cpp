@@ -1,6 +1,6 @@
 #include "Duration.h"
 
-void Duration::delay(int time, Board* board, sf::RenderWindow& window) {
+void Duration::delay(int time, sf::RenderWindow& window) {
     sf::Clock delayClock;
     delayClock.restart();
     time *= 1000;

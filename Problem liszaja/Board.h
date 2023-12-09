@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+#include "Duration.h"
 using namespace std;
 
 
@@ -28,7 +29,8 @@ private:
     float offsetX;
     float offsetY;
     sf::Font font;
-    
+    Duration duration;
+
     vector<vector<HealthStatus>> healthStatuses;
     vector<vector<sf::Color>> colors;
 
@@ -37,8 +39,9 @@ private:
     float timer = 0.0f;
 
     sf::Text title;
-    sf::Text deltaText;
-    sf::Text text;
+    sf::Text roundText;
+    sf::Text deltaTimeText;
+    sf::Text allTimeText;
 
     vector<tuple<int, int, int>> toStore;
     void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);

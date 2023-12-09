@@ -77,28 +77,25 @@ void Board::drawBoard(sf::RenderWindow& window) {
     title = sf::Text("Problem liszaja", font, 30);
     sf::FloatRect titleRect = title.getLocalBounds();
     title.setOrigin(titleRect.left + titleRect.width / 2.0f, titleRect.top + titleRect.height / 2.0f);
-    title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, offsetY - 50.0f));
+    title.setPosition(sf::Vector2f(offsetX + boardSize / 2.0f, 50.0f));
     window.draw(title);
 
-    window.draw(deltaText);
-    window.draw(text);
+    window.draw(roundText);
+    window.draw(deltaTimeText);
+    window.draw(allTimeText);
 }
 
 void Board::handleClick(int currentround, sf::RenderWindow& window) {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
-    // Sprawdzanie, czy mysz znajduje siê nad plansz¹
     if (mousePosition.x >= offsetX && mousePosition.x <= offsetX + boardSize &&
         mousePosition.y >= offsetY && mousePosition.y <= offsetY + boardSize) {
 
-        // Znajdowanie indeksu kolumny i wiersza, na który klikniêto
         unsigned int col = static_cast<unsigned int>((mousePosition.x - offsetX) / cellSize);
         unsigned int row = static_cast<unsigned int>((mousePosition.y - offsetY) / cellSize);
 
-        // Wypisanie indeksów klikniêtego pola
         cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
 
-        // Zaznaczanie wybranego pola na czerwono
         healthStatuses[row][col] = Infected;
         addTotoStore(currentround, row, col);
     }
@@ -134,17 +131,20 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
         return;
     }
 
-    float deltaTimeOffsetX = offsetX + boardSize + 20.0f;
-    deltaText = sf::Text("Delta Czasu: " + std::to_string(deltaTime), font, 20);
-    sf::FloatRect deltaTextRect = deltaText.getLocalBounds();
-    deltaText.setOrigin(deltaTextRect.left + deltaTextRect.width / 2.0f, deltaTextRect.top + deltaTextRect.height / 2.0f);
-    deltaText.setPosition(sf::Vector2f(deltaTimeOffsetX + deltaTextRect.width, offsetY + 30.0f));
+    roundText = sf::Text("Runda: " + std::to_string(currentround), font, 20);
+    sf::FloatRect roundTextRect = roundText.getLocalBounds();
+    roundText.setOrigin(roundTextRect.left, roundTextRect.top + roundTextRect.height / 2.0f);
+    roundText.setPosition(sf::Vector2f(930.0f, 100.0f));
+
+    deltaTimeText = sf::Text("Delta Czasu: " + std::to_string(deltaTime), font, 20);
+    sf::FloatRect deltaTimeTextRect = deltaTimeText.getLocalBounds();
+    deltaTimeText.setOrigin(deltaTimeTextRect.left, deltaTimeTextRect.top + deltaTimeTextRect.height / 2.0f);
+    deltaTimeText.setPosition(sf::Vector2f(930.0f , 130.0f));
     
-    float textOffsetX = offsetX + boardSize + 100.0f;
-    text = sf::Text("Delta Czasu: " + std::to_string(deltaTime), font, 20);
-    sf::FloatRect textRect = text.getLocalBounds();
-    text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    text.setPosition(sf::Vector2f(textOffsetX + textRect.width, offsetY + 50.0f));
+    allTimeText = sf::Text("Calkowity Czas: " + std::to_string(deltaTime), font, 20);
+    sf::FloatRect allTimeTextRect = allTimeText.getLocalBounds();
+    allTimeText.setOrigin(allTimeTextRect.left, allTimeTextRect.top + allTimeTextRect.height / 2.0f);
+    allTimeText.setPosition(sf::Vector2f(930.0f, 160.0f));
    
     drawBoard(window);
 }
