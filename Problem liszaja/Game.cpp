@@ -28,20 +28,11 @@ int Game::run(){
                     board.handleClick(currentround, window);
                     board.drawBoard(window);
                     window.display();
-                    cout << "All: " << board.size * board.size << endl;
                     currentround = 2;
                 }
             }
             if (currentround != 1 && currentround <= duration.maxround) {
                 for (currentround = 2; currentround <= duration.maxround; currentround++) {
-                    float deltaTime = clock.restart().asSeconds();
-                    
-                    duration.delay(duration.holdprocess, window);
-                    board.update(board.size, currentround, deltaTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
-                    window.clear();
-                    board.drawBoard(window);
-                    window.display();
-
                     if (board.countCells(Health, board.size) == board.size * board.size) {
                         cout << "Koniec Gry: Wszystkie komorki zdrowe" << endl;
                         duration.delay(5, window);
@@ -54,6 +45,15 @@ int Game::run(){
                         window.close();
                         break;
                     }
+
+                    deltaTime = clock.restart().asSeconds();
+                    allTime += deltaTime;
+
+                    duration.delay(duration.holdprocess, window);
+                    board.update(board.size, currentround, deltaTime, allTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
+                    window.clear();
+                    board.drawBoard(window);
+                    window.display();
                 }
             }
         }

@@ -20,7 +20,7 @@ public:
     void drawBoard(sf::RenderWindow& window);
     void calculateboardSize(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);
-    void update(int boardSize, int currentRound, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
+    void update(int boardSize, int currentRound, float deltaTime, float allTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown);
     unsigned int size;
     int countCells(HealthStatus status, int boardSize);
 private:
@@ -42,6 +42,10 @@ private:
     sf::Text roundText;
     sf::Text deltaTimeText;
     sf::Text allTimeText;
+    sf::Text allCellText;
+    sf::Text infectedCellText;
+    sf::Text immuneCellText;
+    sf::Text healthCellText;
 
     vector<tuple<int, int, int>> toStore;
     void findRowAndCol(unsigned int row, unsigned int col, int currentround, float infectionPercent);

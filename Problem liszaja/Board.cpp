@@ -85,6 +85,10 @@ void Board::drawBoard(sf::RenderWindow& window) {
     window.draw(roundText);
     window.draw(deltaTimeText);
     window.draw(allTimeText);
+    window.draw(allCellText);
+    window.draw(infectedCellText);
+    window.draw(immuneCellText);
+    window.draw(healthCellText);
 }
 
 void Board::handleClick(int currentround, sf::RenderWindow& window) {
@@ -103,7 +107,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
     }
 }
 
-void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown) {
+void Board::update(int boardSize,int currentround, float deltaTime, float allTime, sf::RenderWindow& window, float infectionPercent, int infectedToImmune, int immuneCooldown) {
     // Iterate through the cells and spread infection
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
@@ -115,17 +119,6 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     
     spreadInfection(toStore, currentround, infectedToImmune, immuneCooldown); 
     //drawtoStore(toStore);
-
-    std::cout << "currentround " << currentround << std::endl;
-    std::cout << "deltaTime " << deltaTime << std::endl;
-    std::cout << "timer " << timer << std::endl;
-
-    cout << "Health: " << countCells(Health, boardSize) << endl;
-    cout << "Infected: " << countCells(Infected, boardSize) << endl;
-    cout << "Immune: " << countCells(Immune, boardSize) << endl;
-    cout << "Infected+Immune: " << countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
-    cout << "Health+Infected+Immune: " << countCells(Health, boardSize) + countCells(Infected, boardSize) + countCells(Immune, boardSize) << endl;
-
 
     // Dodawanie czcionki
     if (!font.loadFromFile("Inter-Medium.ttf")) {
@@ -143,10 +136,30 @@ void Board::update(int boardSize,int currentround, float deltaTime, sf::RenderWi
     deltaTimeText.setOrigin(deltaTimeTextRect.left, deltaTimeTextRect.top + deltaTimeTextRect.height / 2.0f);
     deltaTimeText.setPosition(sf::Vector2f(930.0f , 130.0f));
     
-    allTimeText = sf::Text("Calkowity Czas: " + std::to_string(deltaTime), font, 20);
+    allTimeText = sf::Text("Calkowity Czas: " + std::to_string(allTime), font, 20);
     sf::FloatRect allTimeTextRect = allTimeText.getLocalBounds();
     allTimeText.setOrigin(allTimeTextRect.left, allTimeTextRect.top + allTimeTextRect.height / 2.0f);
     allTimeText.setPosition(sf::Vector2f(930.0f, 160.0f));
+
+    allCellText = sf::Text("Ilosc wszystkich komorek: " + std::to_string(boardSize * boardSize), font, 20);
+    sf::FloatRect allCellTextRect = allCellText.getLocalBounds();
+    allCellText.setOrigin(allCellTextRect.left, allCellTextRect.top + allCellTextRect.height / 2.0f);
+    allCellText.setPosition(sf::Vector2f(930.0f, 190.0f));
+
+    infectedCellText = sf::Text("Ilosc chorych komorek: " + std::to_string(countCells(Infected, boardSize)), font, 20);
+    sf::FloatRect infectedCellTextRect = infectedCellText.getLocalBounds();
+    infectedCellText.setOrigin(infectedCellTextRect.left, infectedCellTextRect.top + infectedCellTextRect.height / 2.0f);
+    infectedCellText.setPosition(sf::Vector2f(930.0f, 220.0f));
+
+    immuneCellText = sf::Text("Ilosc odpornych komorek: " + std::to_string(countCells(Immune, boardSize)), font, 20);
+    sf::FloatRect immuneCellTextRect = immuneCellText.getLocalBounds();
+    immuneCellText.setOrigin(immuneCellTextRect.left, immuneCellTextRect.top + immuneCellTextRect.height / 2.0f);
+    immuneCellText.setPosition(sf::Vector2f(930.0f, 250.0f));
+
+    healthCellText = sf::Text("Ilosc zdrowych komorek: " + std::to_string(countCells(Health, boardSize)), font, 20);
+    sf::FloatRect healthCellTextRect = healthCellText.getLocalBounds();
+    healthCellText.setOrigin(healthCellTextRect.left, healthCellTextRect.top + healthCellTextRect.height / 2.0f);
+    healthCellText.setPosition(sf::Vector2f(930.0f, 280.0f));
    
     drawBoard(window);
 }

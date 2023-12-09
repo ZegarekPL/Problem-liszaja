@@ -11,5 +11,7 @@ private:
     Duration duration;
     Board board;
     sf::Clock clock;
+    float deltaTime;
+    float allTime;
 
 };
