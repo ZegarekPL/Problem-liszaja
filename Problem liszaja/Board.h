@@ -24,8 +24,8 @@ public:
     unsigned int size;
     int countCells(HealthStatus status, int boardSize);
 private:
-    float cellSize = 50.0f;
-    float boardSize;
+    float cellSize;
+    float boardSize = 550.0f;
     float offsetX;
     float offsetY;
     sf::Font font;

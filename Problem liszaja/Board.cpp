@@ -10,10 +10,10 @@ void Board::consoleStart() {
         std::cout << "Wpisz liczbe pol x: ";
         std::cin >> size;
 
-        if (size <= 0 || size > 11) {
-            std::cout << "Error: Too large area!!! Try again." << std::endl;
+        if (size <= 0) {
+            std::cout << "Error: Cant be 0 or less." << std::endl;
         }
-    } while (size <= 0 || size > 11);
+    } while (size <= 0);
 
     healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
     colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
@@ -21,7 +21,9 @@ void Board::consoleStart() {
 
 
 void Board::calculateboardSize(sf::RenderWindow& window) {
-    boardSize = size * cellSize;
+    
+    cellSize = boardSize / size;
+
     offsetX = (window.getSize().x - boardSize) / 2.0f;
     offsetY = (window.getSize().y - boardSize) / 2.0f;
 }
