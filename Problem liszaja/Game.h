@@ -3,6 +3,7 @@
 #include "Board.h"
 #include <SFML/Window.hpp>
 #include "Duration.h"
+#include "Menu.h"
 
 class Game {
 public:
@@ -10,6 +11,7 @@ public:
 private:
     Duration duration;
     Board board;
+    Menu menu;
     sf::Clock clock;
     float deltaTime;
     float allTime;

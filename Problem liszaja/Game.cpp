@@ -10,6 +10,7 @@ int Game::run(){
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Problem liszaja", sf::Style::Titlebar | sf::Style::Close);
 
     bool gameStarted = false;
+    bool menuOpen = true;
     int currentround = 1;
 
     while (window.isOpen()) {
@@ -18,11 +19,15 @@ int Game::run(){
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            /*
-            if (!gameStarted) {
-
+            
+            if (menuOpen) {
+                window.clear();
+                menu.drawMenu(window);
+                window.display();
             }
-            */
+
+
+            /*
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                 if (!gameStarted) {
                     gameStarted = true;
@@ -63,9 +68,16 @@ int Game::run(){
                     window.display();
                 }
             }
+            */
+            
         }
         window.clear();
-        board.drawBoard(window);
+        if (menuOpen) {
+            menu.drawMenu(window);
+        }
+        else {
+            board.drawBoard(window);
+        }
         window.display();
     }
     
