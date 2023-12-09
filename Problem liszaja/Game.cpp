@@ -32,7 +32,7 @@ int Game::run(){
                     board.calculateboardSize(window);
                     board.handleClick(currentround, window);
                     board.drawBoard(window);
-                    menu.drawMenu(window);
+                    //duration.drawMenu(window);
                     window.display();
                     currentround = 2;
                 }
@@ -59,6 +59,7 @@ int Game::run(){
                     board.update(board.size, currentround, deltaTime, allTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
                     window.clear();
                     board.drawBoard(window);
+                    //duration.drawMenu(window);
                     window.display();
                 }
             }
