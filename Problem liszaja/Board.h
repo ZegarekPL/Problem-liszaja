@@ -34,10 +34,6 @@ private:
     vector<vector<HealthStatus>> healthStatuses;
     vector<vector<sf::Color>> colors;
 
-    const float infectionInterval = 1.0f;
-    const float immuneDuration = 3.0f;
-    float timer = 0.0f;
-
     sf::Text title;
     sf::Text roundText;
     sf::Text deltaTimeText;

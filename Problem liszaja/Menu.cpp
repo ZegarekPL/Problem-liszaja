@@ -4,7 +4,7 @@ Menu::Menu() {
     board.size = 1;
     duration.maxround = 1;
     duration.holdprocess = 1;
-    duration.infectionPercent = 1;
+    duration.infectionPercent = 50;
     duration.infectedToImmune = 1;
     duration.immuneCooldown = 1;
 }

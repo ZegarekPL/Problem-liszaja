@@ -34,6 +34,7 @@ int Game::run() {
             }
 
             if (currentround == 1 && !gameStarted && !menuOpen) {
+                cout << "sizew if: " << board.size << endl;
                 window.clear();
                 board.drawBoard(window);
                 window.display();
