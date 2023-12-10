@@ -146,41 +146,53 @@ void Menu::drawButton(sf::RenderWindow& window, const std::string& text, const s
 void Menu::increase(int howMuch, const std::string& variable) {
     if (variable == "size") {
         board.size += howMuch;
+        cout << "board.size: " << board.size << endl;
     }
     if (variable == "maxround") {
         duration.maxround += howMuch;
+        cout << "duration.maxround: " << duration.maxround << endl;
     }
     if (variable == "holdprocess") {
         duration.holdprocess += howMuch;
+        cout << "duration.holdprocess: " << duration.holdprocess << endl;
     }
     if (variable == "infectionPercent") {
         duration.infectionPercent += howMuch;
+        cout << "duration.infectionPercent: " << duration.infectionPercent << endl;
     }
     if (variable == "infectedToImmune") {
         duration.infectedToImmune += howMuch;
+        cout << "duration.infectedToImmune: " << duration.infectedToImmune << endl;
     }
     if (variable == "immuneCooldown") {
         duration.immuneCooldown += howMuch;
+        cout << "duration.immuneCooldown: " << duration.immuneCooldown << endl;
     }
 }
 
 void Menu::decrease(int howMuch, const std::string& variable) {
     if (board.size > 1 && variable == "size") {
         board.size -= howMuch;
+        cout << "board.size: " << board.size << endl;
     }
     if (duration.maxround > 1 && variable == "maxround") {
         duration.maxround -= howMuch;
+        cout << "duration.maxround: " << duration.maxround << endl;
     }
     if (duration.holdprocess > 1 && variable == "holdprocess") {
         duration.holdprocess -= howMuch;
+        cout << "duration.holdprocess: " << duration.holdprocess << endl;
     }
     if (duration.infectionPercent > 1 && variable == "infectionPercent") {
         duration.infectionPercent -= howMuch;
+        cout << "duration.infectionPercent: " << duration.infectionPercent << endl;
     }
     if (duration.infectedToImmune > 1 && variable == "infectedToImmune") {
         duration.infectedToImmune -= howMuch;
+        cout << "duration.infectedToImmune: " << duration.infectedToImmune << endl;
     }
     if (duration.immuneCooldown > 1 && variable == "immuneCooldown") {
         duration.immuneCooldown -= howMuch;
+        cout << "duration.immuneCooldown: " << duration.immuneCooldown << endl;
     }
 }

@@ -35,7 +35,6 @@ int Game::run() {
 
             if (currentround == 1 && !gameStarted && !menuOpen) {
                 window.clear();
-                board.calculateboardSize(window);
                 board.drawBoard(window);
                 window.display();
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {

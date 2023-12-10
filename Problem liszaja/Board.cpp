@@ -5,7 +5,7 @@ Board::Board() {
 }
 
 void Board::consoleStart() {
-
+    /*
     do {
         std::cout << "Wpisz liczbe pol x: ";
         std::cin >> size;
@@ -14,7 +14,7 @@ void Board::consoleStart() {
             std::cout << "Error: Cant be 0 or less." << std::endl;
         }
     } while (size <= 0);
-
+    */
     healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
     colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
 }
@@ -26,12 +26,15 @@ void Board::calculateboardSize(sf::RenderWindow& window) {
 
     offsetX = (window.getSize().x - boardSize) / 2.0f;
     offsetY = (window.getSize().y - boardSize) / 2.0f;
+
 }
 
 
 void Board::drawBoard(sf::RenderWindow& window) {
 
     calculateboardSize(window);
+
+    cout << "size: "<< size << endl;
 
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
@@ -50,6 +53,7 @@ void Board::drawBoard(sf::RenderWindow& window) {
                 break;
             }
             window.draw(cell);
+            cout << "chuje..." << endl;
         }
     }
 
