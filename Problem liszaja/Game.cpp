@@ -4,7 +4,7 @@ using namespace sf;
 
 int Game::run() {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Problem liszaja", sf::Style::Titlebar | sf::Style::Close);
-
+    this->menu = new Menu();
     bool gameStarted = false;
     bool menuOpen = true;
     int currentround = 1;
@@ -18,13 +18,16 @@ int Game::run() {
 
             if (menuOpen) {
                 window.clear();
-                menu.drawMenu(window);
+                menu->drawMenu(window);
                 window.display();
             }
 
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::W) {
                 if (menuOpen) {
                     menuOpen = false;
+                    this->board = new Board(menu->menuSize);
+                    this->duration = new Duration(menu->menuMaxround, menu->menuHoldprocess, menu->menuInfectionPercent, menu->menuInfectedToImmune, menu->menuImmuneCooldown);
+                    board->calculateboardSize(window);
                     break;
                 }
                 else if (!menuOpen) {
@@ -34,28 +37,28 @@ int Game::run() {
             }
 
             if (currentround == 1 && !gameStarted && !menuOpen) {
-                cout << "sizew if: " << board.size << endl;
+
                 window.clear();
-                board.drawBoard(window);
+                board->drawBoard(window);
                 window.display();
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                    board.handleClick(currentround, window);
+                    board->handleClick(currentround, window);
                     gameStarted = true;
                     currentround = 2;
                 }     
             }
                 
-            if (currentround != 1 && currentround <= duration.maxround && !menuOpen) {
-                if (board.countCells(Health, board.size) == board.size * board.size) {
+            if (currentround != 1 && currentround <= duration->maxround && !menuOpen) {
+                if (board->countCells(Health, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki zdrowe" << endl;
-                    duration.delay(5, window);
+                    duration->delay(5, window);
                     window.close();
                     break;
                 }
 
-                if (board.countCells(Infected, board.size) == board.size * board.size) {
+                if (board->countCells(Infected, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki chore" << endl;
-                    duration.delay(5, window);
+                    duration->delay(5, window);
                     window.close();
                     break;
                 }
@@ -63,23 +66,16 @@ int Game::run() {
                 deltaTime = clock.restart().asSeconds();
                 allTime += deltaTime;
 
-                duration.delay(duration.holdprocess, window);
-                board.update(board.size, currentround, deltaTime, allTime, window, duration.infectionPercent, duration.infectedToImmune, duration.immuneCooldown);
+                duration->delay(duration->holdprocess, window);
+                board->update(board->size, currentround, deltaTime, allTime, window, duration->infectionPercent, duration->infectedToImmune, duration->immuneCooldown);
+                
                 window.clear();
-                board.drawBoard(window);
+                board->drawBoard(window);
                 window.display();
+                
                 currentround++;
             }    
         }
-
-        window.clear();
-        if (menuOpen) {
-            menu.drawMenu(window);
-        }
-        else {
-            board.drawBoard(window);
-        }
-        window.display();
     }
 
     return 0;

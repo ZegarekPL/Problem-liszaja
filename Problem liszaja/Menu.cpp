@@ -1,13 +1,5 @@
 #include "Menu.h"
-
-Menu::Menu() {
-    board.size = 1;
-    duration.maxround = 1;
-    duration.holdprocess = 1;
-    duration.infectionPercent = 50;
-    duration.infectedToImmune = 1;
-    duration.immuneCooldown = 1;
-}
+#include "Board.h"
 
 void Menu::drawMenu(sf::RenderWindow& window) {
     // Dodawanie czcionki
@@ -33,7 +25,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(40.0f, 150.0f), [this]() { increase(5, "size"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(40.0f, 200.0f), [this]() { increase(1, "size"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text sizeText("Ilosc pol: " + std::to_string(board.size), font, 20);
+    sf::Text sizeText("Ilosc pol: " + std::to_string(menuSize), font, 20);
     sizeText.setPosition(sf::Vector2f(40.0f, 250.0f));
     window.draw(sizeText);
 
@@ -46,7 +38,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(240.0f, 150.0f), [this]() { increase(5, "maxround"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(240.0f, 200.0f), [this]() { increase(1, "maxround"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text roundsText("Ilosc rund: " + std::to_string(duration.maxround), font, 20);
+    sf::Text roundsText("Ilosc rund: " + std::to_string(menuMaxround), font, 20);
     roundsText.setPosition(sf::Vector2f(240.0f, 250.0f));
     window.draw(roundsText);
 
@@ -59,7 +51,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(440.0f, 150.0f), [this]() { increase(5, "holdprocess"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(440.0f, 200.0f), [this]() { increase(1, "holdprocess"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text holdprocessText("Przerwa: " + std::to_string(duration.holdprocess), font, 20);
+    sf::Text holdprocessText("Przerwa: " + std::to_string(menuHoldprocess), font, 20);
     holdprocessText.setPosition(sf::Vector2f(440.0f, 250.0f));
     window.draw(holdprocessText);
 
@@ -72,7 +64,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(640.0f, 150.0f), [this]() { increase(5, "infectionPercent"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(640.0f, 200.0f), [this]() { increase(1, "infectionPercent"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text infectionPercentText("% szansy: " + std::to_string(duration.infectionPercent), font, 20);
+    sf::Text infectionPercentText("% szansy: " + std::to_string(menuInfectionPercent), font, 20);
     infectionPercentText.setPosition(sf::Vector2f(640.0f, 250.0f));
     window.draw(infectionPercentText);
 
@@ -85,7 +77,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(840.0f, 150.0f), [this]() { increase(5, "infectedToImmune"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(840.0f, 200.0f), [this]() { increase(1, "infectedToImmune"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text infectedToImmuneText("Inf 2 Imm: " + std::to_string(duration.infectedToImmune), font, 20);
+    sf::Text infectedToImmuneText("Inf 2 Imm: " + std::to_string(menuInfectedToImmune), font, 20);
     infectedToImmuneText.setPosition(sf::Vector2f(840.0f, 250.0f));
     window.draw(infectedToImmuneText);
 
@@ -98,7 +90,7 @@ void Menu::drawMenu(sf::RenderWindow& window) {
     drawButton(window, "+5", sf::Vector2f(1040.0f, 150.0f), [this]() { increase(5, "immuneCooldown"); }, sf::Color(0, 204, 0), sf::Color(0, 204, 102));
     drawButton(window, "+1", sf::Vector2f(1040.0f, 200.0f), [this]() { increase(1, "immuneCooldown"); }, sf::Color(204, 0, 0), sf::Color(204, 102, 0));
 
-    sf::Text immuneCooldownText("Imm 2 Heal: " + std::to_string(duration.immuneCooldown), font, 20);
+    sf::Text immuneCooldownText("Imm 2 Heal: " + std::to_string(menuImmuneCooldown), font, 20);
     immuneCooldownText.setPosition(sf::Vector2f(1040.0f, 250.0f));
     window.draw(immuneCooldownText);
 
@@ -145,54 +137,42 @@ void Menu::drawButton(sf::RenderWindow& window, const std::string& text, const s
 
 void Menu::increase(int howMuch, const std::string& variable) {
     if (variable == "size") {
-        board.size += howMuch;
-        cout << "board.size: " << board.size << endl;
+        menuSize += howMuch;
     }
     if (variable == "maxround") {
-        duration.maxround += howMuch;
-        cout << "duration.maxround: " << duration.maxround << endl;
+        menuMaxround += howMuch;
     }
     if (variable == "holdprocess") {
-        duration.holdprocess += howMuch;
-        cout << "duration.holdprocess: " << duration.holdprocess << endl;
+        menuHoldprocess += howMuch;
     }
     if (variable == "infectionPercent") {
-        duration.infectionPercent += howMuch;
-        cout << "duration.infectionPercent: " << duration.infectionPercent << endl;
+        menuInfectionPercent += howMuch;
     }
     if (variable == "infectedToImmune") {
-        duration.infectedToImmune += howMuch;
-        cout << "duration.infectedToImmune: " << duration.infectedToImmune << endl;
+        menuInfectedToImmune += howMuch;
     }
     if (variable == "immuneCooldown") {
-        duration.immuneCooldown += howMuch;
-        cout << "duration.immuneCooldown: " << duration.immuneCooldown << endl;
+        menuImmuneCooldown += howMuch;
     }
 }
 
 void Menu::decrease(int howMuch, const std::string& variable) {
-    if (board.size > 1 && variable == "size") {
-        board.size -= howMuch;
-        cout << "board.size: " << board.size << endl;
+    if (menuSize > 1 && variable == "size") {
+        menuSize -= howMuch;
     }
-    if (duration.maxround > 1 && variable == "maxround") {
-        duration.maxround -= howMuch;
-        cout << "duration.maxround: " << duration.maxround << endl;
+    if (menuMaxround > 1 && variable == "maxround") {
+        menuMaxround -= howMuch;
     }
-    if (duration.holdprocess > 1 && variable == "holdprocess") {
-        duration.holdprocess -= howMuch;
-        cout << "duration.holdprocess: " << duration.holdprocess << endl;
+    if (menuHoldprocess > 1 && variable == "holdprocess") {
+        menuHoldprocess -= howMuch;;
     }
-    if (duration.infectionPercent > 1 && variable == "infectionPercent") {
-        duration.infectionPercent -= howMuch;
-        cout << "duration.infectionPercent: " << duration.infectionPercent << endl;
+    if (menuInfectionPercent > 1 && variable == "infectionPercent") {
+        menuInfectionPercent -= howMuch;
     }
-    if (duration.infectedToImmune > 1 && variable == "infectedToImmune") {
-        duration.infectedToImmune -= howMuch;
-        cout << "duration.infectedToImmune: " << duration.infectedToImmune << endl;
+    if (menuInfectedToImmune > 1 && variable == "infectedToImmune") {
+        menuInfectedToImmune -= howMuch;
     }
-    if (duration.immuneCooldown > 1 && variable == "immuneCooldown") {
-        duration.immuneCooldown -= howMuch;
-        cout << "duration.immuneCooldown: " << duration.immuneCooldown << endl;
+    if (menuImmuneCooldown > 1 && variable == "immuneCooldown") {
+        menuImmuneCooldown -= howMuch;
     }
 }

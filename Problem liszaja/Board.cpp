@@ -1,11 +1,11 @@
 #include "Board.h"
 
-Board::Board() {
-
+Board::Board(int size) {
+    this->size=size;
 }
 
 void Board::consoleStart() {
-    /*
+    
     do {
         std::cout << "Wpisz liczbe pol x: ";
         std::cin >> size;
@@ -14,14 +14,13 @@ void Board::consoleStart() {
             std::cout << "Error: Cant be 0 or less." << std::endl;
         }
     } while (size <= 0);
-    */
-    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
-    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
+      
 }
 
 
 void Board::calculateboardSize(sf::RenderWindow& window) {
-    
+    healthStatuses.resize(size, std::vector<HealthStatus>(size, Health));
+    colors.resize(size, std::vector<sf::Color>(size, sf::Color::Green));
     cellSize = boardSize / size;
 
     offsetX = (window.getSize().x - boardSize) / 2.0f;
@@ -31,10 +30,6 @@ void Board::calculateboardSize(sf::RenderWindow& window) {
 
 
 void Board::drawBoard(sf::RenderWindow& window) {
-
-    calculateboardSize(window);
-
-    cout << "size: "<< size << endl;
 
     for (unsigned int i = 0; i < size; ++i) {
         for (unsigned int j = 0; j < size; ++j) {
@@ -53,7 +48,6 @@ void Board::drawBoard(sf::RenderWindow& window) {
                 break;
             }
             window.draw(cell);
-            cout << "chuje..." << endl;
         }
     }
 
@@ -96,6 +90,7 @@ void Board::drawBoard(sf::RenderWindow& window) {
 }
 
 void Board::handleClick(int currentround, sf::RenderWindow& window) {
+
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
     if (mousePosition.x >= offsetX && mousePosition.x <= offsetX + boardSize &&

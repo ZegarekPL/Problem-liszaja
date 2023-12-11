@@ -1,5 +1,13 @@
 #include "Duration.h"
 
+Duration::Duration(int maxround, unsigned int holdprocess, int infectionPercent, unsigned int infectedToImmune, unsigned int immuneCooldown) {
+    this->maxround = maxround;
+    this->holdprocess = holdprocess;
+    this->infectionPercent = infectionPercent;
+    this->infectedToImmune = infectedToImmune;
+    this->immuneCooldown = immuneCooldown;
+}
+
 void Duration::delay(int time, sf::RenderWindow& window) {
     sf::Clock delayClock;
     delayClock.restart();

@@ -15,7 +15,7 @@ enum HealthStatus {
 
 class Board {
 public:
-    Board();
+    Board(int size);
     void consoleStart();
     void drawBoard(sf::RenderWindow& window);
     void calculateboardSize(sf::RenderWindow& window);
@@ -29,7 +29,7 @@ private:
     float offsetX;
     float offsetY;
     sf::Font font;
-    Duration duration;
+    Duration* duration;
 
     vector<vector<HealthStatus>> healthStatuses;
     vector<vector<sf::Color>> colors;

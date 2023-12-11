@@ -2,16 +2,21 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <functional>
-#include "Board.h"
-#include "Duration.h"
+class Board;
+class Duration;
 
 class Menu{
 public:
-    Menu();
     void drawMenu(sf::RenderWindow& window);
     void drawButton(sf::RenderWindow& window, const std::string& text, const sf::Vector2f& position, const std::function<void()>& onClick, const sf::Color& mainColor, const sf::Color& hoverColor);
     void increase(int howMuch, const std::string& variable);
     void decrease(int howMuch, const std::string& variable);
+    int menuSize=1;
+    int menuMaxround = 2;
+    int menuHoldprocess = 1;
+    int menuInfectionPercent = 50;
+    int menuInfectedToImmune = 1;
+    int menuImmuneCooldown = 1;
 private:
     sf::Font font;
     sf::Text title;
@@ -22,7 +27,7 @@ private:
     sf::Text infectedToImmuneText;
     sf::Text immuneCooldownText;
     sf::Text exit;
-    Board board;
-    Duration duration;
+    Board* board;
+    Duration* duration;
 };
 
