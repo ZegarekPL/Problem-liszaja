@@ -15,5 +15,6 @@ private:
     sf::Clock clock;
     float deltaTime;
     float allTime;
-
+    void delay(int time, sf::RenderWindow& window, bool& menuOpen);
+    bool isFirst = true;
 };

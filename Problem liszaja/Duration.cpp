@@ -8,12 +8,7 @@ Duration::Duration(int maxround, unsigned int holdprocess, int infectionPercent,
     this->immuneCooldown = immuneCooldown;
 }
 
-void Duration::delay(int time, sf::RenderWindow& window) {
-    sf::Clock delayClock;
-    delayClock.restart();
-    time *= 1000;
-    while (delayClock.getElapsedTime().asMilliseconds() < time) { }
-}
+
 
 void Duration::consoleStart() {
     /*

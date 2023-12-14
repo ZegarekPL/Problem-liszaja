@@ -25,14 +25,15 @@ int Game::run() {
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::W) {
                 if (menuOpen) {
                     menuOpen = false;
-                    this->board = new Board(menu->menuSize);
+                    if (this->isFirst) {
+                        this->board = new Board(menu->menuSize);
+                        this->isFirst = false;
+                    }
                     this->duration = new Duration(menu->menuMaxround, menu->menuHoldprocess, menu->menuInfectionPercent, menu->menuInfectedToImmune, menu->menuImmuneCooldown);
                     board->calculateboardSize(window);
-                    break;
                 }
                 else if (!menuOpen) {
                     menuOpen = true;
-                    break;
                 }
             }
 
@@ -48,35 +49,63 @@ int Game::run() {
                 }     
             }
                 
-            if (currentround != 1 && currentround <= duration->maxround && !menuOpen) {
+            if (currentround != 1 && currentround <= duration->maxround) {
                 if (board->countCells(Health, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki zdrowe" << endl;
-                    duration->delay(5, window);
+                    delay(5, window, menuOpen);
                     window.close();
                     break;
                 }
 
                 if (board->countCells(Infected, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki chore" << endl;
-                    duration->delay(5, window);
+                    delay(5, window, menuOpen);
                     window.close();
                     break;
                 }
 
-                deltaTime = clock.restart().asSeconds();
-                allTime += deltaTime;
+                if (!menuOpen) {
+                    deltaTime = clock.restart().asSeconds();
+                    allTime += deltaTime;
 
-                duration->delay(duration->holdprocess, window);
-                board->update(board->size, currentround, deltaTime, allTime, window, duration->infectionPercent, duration->infectedToImmune, duration->immuneCooldown);
-                
-                window.clear();
-                board->drawBoard(window);
-                window.display();
-                
-                currentround++;
+                    delay(duration->holdprocess, window, menuOpen);
+                    board->update(board->size, currentround, deltaTime, allTime, window, duration->infectionPercent, duration->infectedToImmune, duration->immuneCooldown);
+
+                    window.clear();
+                    board->drawBoard(window);
+                    window.display();
+
+                    currentround++;
+                } 
             }    
         }
     }
 
     return 0;
+}
+void Game::delay(int time, sf::RenderWindow& window, bool& menuOpen) {
+    sf::Clock delayClock;
+    delayClock.restart();
+    time *= 1000;
+    while (delayClock.getElapsedTime().asMilliseconds() < time) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::W) {
+                if (menuOpen) {
+                    menuOpen = false;
+                    this->board = new Board(menu->menuSize);
+                    this->duration = new Duration(menu->menuMaxround, menu->menuHoldprocess, menu->menuInfectionPercent, menu->menuInfectedToImmune, menu->menuImmuneCooldown);
+                    board->calculateboardSize(window);
+                    break;
+                }
+                else if (!menuOpen) {
+                    menuOpen = true;
+                    break;
+                }
+            }
+        }
+    }
 }
