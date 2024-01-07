@@ -50,6 +50,10 @@ int Game::run() {
             }
                 
             if (currentround != 1 && currentround <= duration->maxround) {
+                if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+                    board->handleClick(currentround, window);
+                }
+
                 if (board->countCells(Health, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki zdrowe" << endl;
                     delay(5, window, menuOpen);
