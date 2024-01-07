@@ -9,11 +9,12 @@ class Game {
 public:
     int run();
 private:
-    Duration duration;
-    Board board;
-    Menu menu;
+    Duration* duration;
+    Board* board;
+    Menu* menu;
     sf::Clock clock;
     float deltaTime;
     float allTime;
-
+    void delay(int time, sf::RenderWindow& window, bool& menuOpen);
+    bool isFirst = true;
 };

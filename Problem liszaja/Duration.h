@@ -4,7 +4,7 @@
 
 class Duration {
 public:
-	void delay(int time, sf::RenderWindow& window);
+    Duration(int maxround, unsigned int holdprocess, int infectionPercent, unsigned int infectedToImmune, unsigned int immuneCooldown);
 	void consoleStart();
     int maxround;
     unsigned int holdprocess;
