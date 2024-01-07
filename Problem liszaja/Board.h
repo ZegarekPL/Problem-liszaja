@@ -17,6 +17,7 @@ class Board {
 public:
     Board(int size);
     void consoleStart();
+    void updateSize(int newSize);
     void drawBoard(sf::RenderWindow& window);
     void calculateboardSize(sf::RenderWindow& window);
     void handleClick(int currentround, sf::RenderWindow& window);

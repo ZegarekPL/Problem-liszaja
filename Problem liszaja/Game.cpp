@@ -26,9 +26,12 @@ int Game::run() {
                 if (menuOpen) {
                     menuOpen = false;
                     if (this->isFirst) {
+                        delete this->board;
                         this->board = new Board(menu->menuSize);
+                        this->board->updateSize(menu->menuSize);
                         this->isFirst = false;
                     }
+                    delete this->duration;
                     this->duration = new Duration(menu->menuMaxround, menu->menuHoldprocess, menu->menuInfectionPercent, menu->menuInfectedToImmune, menu->menuImmuneCooldown);
                     board->calculateboardSize(window);
                 }

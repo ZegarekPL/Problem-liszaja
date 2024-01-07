@@ -4,6 +4,10 @@ Board::Board(int size) {
     this->size=size;
 }
 
+void Board::updateSize(int newSize) {
+    this->size = newSize;
+}
+
 void Board::consoleStart() {
     
     do {
