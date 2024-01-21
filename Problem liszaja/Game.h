@@ -7,7 +7,9 @@
 
 class Game {
 public:
-    int run();
+    int run(); 
+    void drawEndAllHealth(sf::RenderWindow& window);
+    void drawEndAllInfected(sf::RenderWindow& window);
 private:
     Duration* duration;
     Board* board;
@@ -17,4 +19,7 @@ private:
     float allTime;
     void delay(int time, sf::RenderWindow& window, bool& menuOpen);
     bool isFirst = true;
+    sf::Font font;
+    sf::Text exitHealth;
+    sf::Text exitInfected;
 };

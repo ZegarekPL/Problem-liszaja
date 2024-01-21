@@ -52,20 +52,27 @@ int Game::run() {
                 }     
             }
                 
-            if (currentround != 1 && currentround <= duration->maxround) {
+            if (currentround != 1) {
                 if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
                     board->handleClick(currentround, window);
                 }
 
                 if (board->countCells(Health, board->size) == board->size * board->size) {
                     cout << "Koniec Gry: Wszystkie komorki zdrowe" << endl;
+                    
+                    window.clear();
+                    drawEndAllHealth(window);
+                    window.display();
                     delay(5, window, menuOpen);
                     window.close();
                     break;
                 }
 
                 if (board->countCells(Infected, board->size) == board->size * board->size) {
-                    cout << "Koniec Gry: Wszystkie komorki chore" << endl;
+                    cout << "Koniec Gry: Wszystkie komorki chore" << endl;                  
+                    window.clear();
+                    drawEndAllInfected(window);
+                    window.display();
                     delay(5, window, menuOpen);
                     window.close();
                     break;
@@ -115,4 +122,44 @@ void Game::delay(int time, sf::RenderWindow& window, bool& menuOpen) {
             }
         }
     }
+}
+
+void Game::drawEndAllHealth(sf::RenderWindow& window) {
+    // Dodawanie czcionki
+    if (!font.loadFromFile("Inter-Medium.ttf")) {
+        std::cout << "Error: B³¹d ³adowania czcionki" << std::endl;
+        return;
+    }
+
+    // Pomarañczowe t³o
+    sf::RectangleShape background(sf::Vector2f(window.getSize().x, window.getSize().y));
+    background.setFillColor(sf::Color(0, 0, 0, 128));
+    window.draw(background);
+
+    // Dodanie napisu
+    exitHealth = sf::Text("Koniec Gry: Wszystkie komorki zdrowe", font, 25);
+    sf::FloatRect exitRect = exitHealth.getLocalBounds();
+    exitHealth.setOrigin(exitRect.left + exitRect.width / 2.0f, exitRect.top + exitRect.height / 2.0f);
+    exitHealth.setPosition(sf::Vector2f(640.0f, 300.0f));
+    window.draw(exitHealth);
+}
+
+void Game::drawEndAllInfected(sf::RenderWindow& window) {
+    // Dodawanie czcionki
+    if (!font.loadFromFile("Inter-Medium.ttf")) {
+        std::cout << "Error: B³¹d ³adowania czcionki" << std::endl;
+        return;
+    }
+
+    // Pomarañczowe t³o
+    sf::RectangleShape background(sf::Vector2f(window.getSize().x, window.getSize().y));
+    background.setFillColor(sf::Color(0, 0, 0, 128));
+    window.draw(background);
+
+    // Dodanie napisu
+    exitInfected = sf::Text("Koniec Gry: Wszystkie komorki chore", font, 25);
+    sf::FloatRect exitRect = exitInfected.getLocalBounds();
+    exitInfected.setOrigin(exitRect.left + exitRect.width / 2.0f, exitRect.top + exitRect.height / 2.0f);
+    exitInfected.setPosition(sf::Vector2f(640.0f, 300.0f));
+    window.draw(exitInfected);
 }

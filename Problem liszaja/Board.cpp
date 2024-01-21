@@ -103,7 +103,7 @@ void Board::handleClick(int currentround, sf::RenderWindow& window) {
         unsigned int col = static_cast<unsigned int>((mousePosition.x - offsetX) / cellSize);
         unsigned int row = static_cast<unsigned int>((mousePosition.y - offsetY) / cellSize);
 
-        cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
+        //cout << "Clicked on cell: (" << row << ", " << col << ")" << std::endl;
 
         healthStatuses[row][col] = Infected;
         addTotoStore(currentround, row, col);
