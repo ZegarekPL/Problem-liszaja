@@ -1,0 +1,73 @@
+﻿  Game.cpp
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(35,75): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(114,75): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         ]
+  Menu.cpp
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(39,87): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(45,87): warning C4305: "argument": obcięcie z "double" do "float"
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(167,21): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(170,25): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(176,33): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(179,33): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(182,31): warning C4244: "+=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(188,21): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(191,25): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(197,33): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(200,33): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(203,31): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
+  main.cpp
+  Generowanie kodu...
+  Problem liszaja.vcxproj -> C:\Users\mazur\Git\Problem-liszaja\x64\Debug\Problem liszaja.exe
