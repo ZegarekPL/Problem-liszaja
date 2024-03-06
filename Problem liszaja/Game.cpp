@@ -80,6 +80,9 @@ int Game::run() {
 
                 if (!menuOpen) {
                     deltaTime = clock.restart().asSeconds();
+                    if (deltaTime >= 1) {
+                        cout << "deltaTime" << deltaTime << endl;
+                    }
                     allTime += deltaTime;
 
                     delay(duration->holdprocess, window, menuOpen);

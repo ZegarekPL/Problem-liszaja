@@ -1,42 +1,49 @@
-﻿  Game.cpp
+﻿  Board.cpp
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Board.cpp(118,51): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Board.cpp(274,9): warning C4101: "j": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Board.cpp(290,19): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Board.cpp(291,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  Duration.cpp
+  Game.cpp
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(35,75): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(114,75): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         with
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:             T=unsigned int
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         and
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:             T=float
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,84): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         with
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:             T=unsigned int
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         and
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:             T=float
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(135,64): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         with
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:             T=unsigned int
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         and
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:             T=float
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,84): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         with
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:             T=unsigned int
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         ]
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         and
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         [
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:             T=float
-C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(155,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(117,75): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(138,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,84): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         with
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:             T=unsigned int
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         ]
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         and
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         [
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:             T=float
+C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Game.cpp(158,64): warning C4244:         ]
+  main.cpp
   Menu.cpp
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(12,84): warning C4244:         with
@@ -68,6 +75,62 @@ C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(191,25): warning C42
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(197,33): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(200,33): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
 C:\Users\mazur\Git\Problem-liszaja\Problem liszaja\Menu.cpp(203,31): warning C4244: "-=": konwersja z "float" do "int", możliwa utrata danych
-  main.cpp
   Generowanie kodu...
+sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Transformable.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Shape.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Font.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Font.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RectangleShape.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RectangleShape.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RenderTarget.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Text.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Text.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RenderStates.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RenderStates.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Color.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RenderWindow.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RenderWindow.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Transform.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Transform.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(VertexArray.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(VertexArray.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Texture.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Image.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Image.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(View.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(View.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(BlendMode.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(BlendMode.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Vertex.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Vertex.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Shader.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Shader.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(VertexBuffer.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(VertexBuffer.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(GLExtensions.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(GLExtensions.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(GLCheck.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(GLCheck.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RenderTextureImplFBO.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RenderTextureImplFBO.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(TextureSaver.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(TextureSaver.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(ImageLoader.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(Glsl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(Glsl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-graphics-s-d.lib(RenderTextureImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-graphics-s-d.lib(RenderTextureImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(Mouse.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(Mouse.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(VideoMode.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(VideoMode.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(WindowBase.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(WindowBase.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(Window.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(Window.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(Context.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(Context.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(GlResource.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(GlResource.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(InputImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(InputImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(VideoModeImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(VideoModeImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(Cursor.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(Cursor.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(WindowImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(WindowImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(GlContext.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(GlContext.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(CursorImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(CursorImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(JoystickManager.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(JoystickManager.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(SensorManager.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(SensorManager.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(WindowImplWin32.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(WindowImplWin32.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(VulkanImplWin32.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(VulkanImplWin32.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(WglContext.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(WglContext.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(Joystick.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(Joystick.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(JoystickImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-window-s-d.lib(SensorImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-window-s-d.lib(SensorImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(String.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(String.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Time.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Time.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Clock.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Clock.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Err.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Err.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Mutex.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Mutex.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Lock.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Lock.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(Sleep.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(Sleep.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(ThreadLocal.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(ThreadLocal.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(ClockImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(ClockImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(MutexImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(MutexImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(SleepImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(SleepImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
+sfml-system-s-d.lib(ThreadLocalImpl.obj) : warning LNK4099: nie znaleziono pliku PDB „” z elementem „sfml-system-s-d.lib(ThreadLocalImpl.obj)” lub w pozycji „”; obiekt zostanie skonsolidowany bez informacji debugowania
   Problem liszaja.vcxproj -> C:\Users\mazur\Git\Problem-liszaja\x64\Debug\Problem liszaja.exe

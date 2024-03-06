@@ -1,0 +1,166 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mazur\\Git\\Problem-liszaja\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Problem liszaja\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Board.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Duration.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{86461B2A-9109-4C72-814F-2AB643E5E34C}|Problem liszaja\\Problem liszaja.vcxproj|solutionrelative:Problem liszaja\\Duration.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\Problem liszaja\\main.cpp",
+              "ToolTip": "D:\\Problem liszaja\\main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-04T17:10:44.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Menu.cpp",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.cpp",
+              "RelativeDocumentMoniker": "Problem liszaja\\Menu.cpp",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.cpp",
+              "RelativeToolTip": "Problem liszaja\\Menu.cpp",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAAALEAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-04T17:10:44.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Menu.h",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.h",
+              "RelativeDocumentMoniker": "Problem liszaja\\Menu.h",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Menu.h",
+              "RelativeToolTip": "Problem liszaja\\Menu.h",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-02-04T17:10:44.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Board.cpp",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.cpp",
+              "RelativeDocumentMoniker": "Problem liszaja\\Board.cpp",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.cpp",
+              "RelativeToolTip": "Problem liszaja\\Board.cpp",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHEAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-04T17:10:44.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Board.h",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.h",
+              "RelativeDocumentMoniker": "Problem liszaja\\Board.h",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Board.h",
+              "RelativeToolTip": "Problem liszaja\\Board.h",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACAAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-02-04T17:10:44.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Duration.cpp",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.cpp",
+              "RelativeDocumentMoniker": "Problem liszaja\\Duration.cpp",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.cpp",
+              "RelativeToolTip": "Problem liszaja\\Duration.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-04T17:10:44.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Duration.h",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.h",
+              "RelativeDocumentMoniker": "Problem liszaja\\Duration.h",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Duration.h",
+              "RelativeToolTip": "Problem liszaja\\Duration.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-02-04T17:10:44.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.cpp",
+              "RelativeDocumentMoniker": "Problem liszaja\\Game.cpp",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.cpp",
+              "RelativeToolTip": "Problem liszaja\\Game.cpp",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAnwFMAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-02-04T17:10:44.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.h",
+              "RelativeDocumentMoniker": "Problem liszaja\\Game.h",
+              "ToolTip": "C:\\Users\\mazur\\Git\\Problem-liszaja\\Problem liszaja\\Game.h",
+              "RelativeToolTip": "Problem liszaja\\Game.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-02-04T17:10:44.527Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
